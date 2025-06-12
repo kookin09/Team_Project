@@ -5,7 +5,8 @@ public class PlayerData
     public int gold;                //      보유 골드
 
     public int attackLevel;         //      공격력 레벨
-    public int baseAttackLevel;     //      기본 공격력 레벨
+    public int baseAttack;          //      기본 공격력
+    //
 
     public int critLevel;           //      치명타 레벨
     public float critChance;        //      치명타 확률
@@ -18,6 +19,8 @@ public class PlayerData
 
     public float buffDuration;      //      버프 지속 시간
     public bool isDoubleGoldActive; //      2배 골드 버프 활성 여부
+
+    //public WeaponData equippedWeapon;
 
     public string playerName;       //      플레이어 이름
 }
