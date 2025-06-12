@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 /*
  * 클리커 게임 - 클릭 이벤트 + 파티클 효과 + 자동 공격 스크립트
  * 
@@ -26,8 +26,11 @@ public class ClickEvent : MonoBehaviour
     // 자동 공격 간격 (초)
     // 코루틴 참조 저장용
     // 원래 크기 저장용 (클릭 효과 후 되돌리기 위해)
-    // 치명타 확률 (0~100 사이)
     // 치명타 파티클 시스템 (Inspector에서 연결)
+    // 치명타 확률 (0~100 사이, Inspector에서 조정 가능)
+    // 공격 수행 시 이벤트 (다른 스크립트에서 구독 가능) 구독이란 다른 스크립트가 이 이벤트를 듣고 반응할 수 있게 하는 것
+    // 이벤트를 듣는다는건 다른 스크립트가 이 이벤트가 발생했을 때 특정 함수를 실행하도록 하는 것입니다
+
     public int clickCount = 0;
     public TextMeshProUGUI clickCountText;
     public ParticleSystem debrisParticle;
@@ -35,8 +38,9 @@ public class ClickEvent : MonoBehaviour
     public float autoAttackInterval = 1.0f;
     private Coroutine autoAttackCoroutine;
     private Vector3 originalScale;
-    public float criticalChance = 30f;
     public ParticleSystem criticalParticle;
+    public float criticalChance = 30f;
+    public static event System.Action<bool> OnAttackPerformed;
 
     // 게임 시작 시 초기화 함수
     // 이 함수가 하는 일: 
@@ -75,16 +79,21 @@ public class ClickEvent : MonoBehaviour
         // 치명타 판정 (0~100 사이 랜덤 숫자가 설정한 확률보다 작으면 치명타)
         bool isCritical = Random.Range(0f, 100f) < criticalChance;
 
+        OnAttackPerformed?.Invoke(isCritical);
+
         if (isCritical)
         {
             Debug.Log("치명타!");
         }
+
+
         UpdateClickText();
         ClickEffect(isCritical); // 치명타 여부를 전달
     }
 
     // 화면 텍스트 업데이트 함수
-    // 이 함수가 하는 일: TextMeshPro 텍스트가 연결되어 있는지 확인하고, 연결되어 있다면 "Combo: 숫자" 형태로 텍스트를 업데이트합니다
+    // 이 함수가 하는 일: TextMeshPro 텍스트가 연결되어 있는지 확인하고,
+    // 연결되어 있다면 "Combo: 숫자" 형태로 텍스트를 업데이트합니다
     void UpdateClickText()
     {
         if (clickCountText != null)
@@ -152,6 +161,7 @@ public class ClickEvent : MonoBehaviour
     // 이 함수가 하는 일:
     // 이미 자동 공격이 실행 중이라면 먼저 중지합니다
     // 새로운 자동 공격 코루틴을 시작하고 참조를 저장합니다
+    //참조란 다른 코루틴을 추적하기 위해 사용합니다
     public void StartAutoAttack()
     {
         if (autoAttackCoroutine != null)
@@ -209,6 +219,55 @@ public class ClickEvent : MonoBehaviour
         else
         {
             StartAutoAttack();
+        }
+    }
+
+    // === 연동용 함수들 (다른 팀원들이 호출할 함수들) ===
+
+    // PlayerData 업데이트 시 호출될 함수
+    // 이 함수가 하는 일: 게임매니저에서 PlayerData가 변경될 때 호출해서 최신 데이터를 반영합니다
+    public void UpdateFromPlayerData(float newCritChance, float newAutoSpeed, bool autoUnlocked)
+    {
+        criticalChance = newCritChance;
+
+        if (autoUnlocked)
+        {
+            autoAttackInterval = 1f / newAutoSpeed;
+            if (!autoAttackEnabled)
+            {
+                StartAutoAttack();
+            }
+            else
+            {
+                // 자동 공격 중이면 새로운 속도로 재시작
+                StopAutoAttack();
+                StartAutoAttack();
+            }
+        }
+        else
+        {
+            StopAutoAttack();
+        }
+
+        Debug.Log($"ClickEvent 업데이트: 치명타 {criticalChance}%, 자동공격 {(autoUnlocked ? "활성" : "비활성")}");
+    }
+
+    // 치명타 확률만 업데이트 (업그레이드 시 호출)
+    public void UpdateCriticalChance(float newCritChance)
+    {
+        criticalChance = newCritChance;
+        Debug.Log($"치명타 확률 업데이트: {criticalChance}%");
+    }
+
+    // 자동 공격 속도만 업데이트 (업그레이드 시 호출)
+    public void UpdateAutoAttackSpeed(float newAutoSpeed)
+    {
+        if (autoAttackEnabled)
+        {
+            StopAutoAttack();
+            autoAttackInterval = 1f / newAutoSpeed;
+            StartAutoAttack();
+            Debug.Log($"자동 공격 속도 업데이트: {newAutoSpeed}/초");
         }
     }
 }
