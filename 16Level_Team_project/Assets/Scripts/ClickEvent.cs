@@ -77,13 +77,8 @@ public class ClickEvent : MonoBehaviour
 
         if (isCritical)
         {
-            Debug.Log("치명타! 현재 클릭 수: " + clickCount);
+            Debug.Log("치명타!");
         }
-        else
-        {
-            Debug.Log("공격! 현재 클릭 수: " + clickCount);
-        }
-
         UpdateClickText();
         ClickEffect(isCritical); // 치명타 여부를 전달
     }
