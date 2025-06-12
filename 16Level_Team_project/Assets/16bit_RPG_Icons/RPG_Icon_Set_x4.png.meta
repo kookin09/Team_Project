@@ -193,6 +193,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Red Sword
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 446
+        width: 67
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a4485544dad72343bba59ee48c8d7b6
+      internalID: 780297570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brue Sword
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 446
+        width: 60
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8993f01232ae45342b3ea1095065541b
+      internalID: -1429919092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Yellow Sword
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 446
+        width: 64
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1357b76be5135a14a85f4fc8dae32dac
+      internalID: 1976220100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -205,9 +268,12 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Attack Power: -616393362
+      Brue Sword: -1429919092
       Gold: -1084899546
+      Red Sword: 780297570
       Self Attack: -710213170
       Wood Sword: 1426526476
+      Yellow Sword: 1976220100
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
