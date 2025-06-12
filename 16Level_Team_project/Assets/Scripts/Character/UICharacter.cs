@@ -16,6 +16,8 @@ public class UICharacter : MonoBehaviour
     public TextMeshProUGUI curCRT;
 
 
+    //테스트골드
+    public TextMeshProUGUI moneyGold;
     public string outputStringGold;
 
     static readonly string[] stringPreset = {
@@ -33,7 +35,11 @@ public class UICharacter : MonoBehaviour
     {
         UpdateUI();
 
-
+        BigInteger result;
+        if (BigInteger.TryParse(outputStringGold, out result))
+        {
+            moneyGold.text = CalGoldOutPut(result);
+        }
     }
 
 
@@ -71,7 +77,21 @@ public class UICharacter : MonoBehaviour
         character.SetBasicGold(character.GetUpgradeCost());
         character.SetBasicSTR(500);
     }
-
+    public void UpgradeDEF()
+    {
+        character.SetBasicGold(character.GetUpgradeCost());
+        character.SetBasicSTR(500);
+    }
+    public void UpgradeHP()
+    {
+        character.SetBasicGold(character.GetUpgradeCost());
+        character.SetBasicSTR(500);
+    }
+    public void UpgradeCRT()
+    {
+        character.SetBasicGold(character.GetUpgradeCost());
+        character.SetBasicSTR(500);
+    }
 
     public void CheatGold()
     {
