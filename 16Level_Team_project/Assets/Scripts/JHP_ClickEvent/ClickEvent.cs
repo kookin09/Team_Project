@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-/*
- * 클리커 게임 - 클릭 이벤트 + 파티클 효과 + 자동 공격 스크립트
- * 
- * 이 코드가 하는 일:
+/* 이 코드가 하는 일:
  * 1. 오브젝트를 마우스로 클릭하면 클릭 횟수가 증가합니다
  * 2. 화면에 현재 클릭 횟수를 표시합니다  
  * 3. 클릭할 때마다 오브젝트가 살짝 커졌다가 원래 크기로 돌아오는 효과를 줍니다
