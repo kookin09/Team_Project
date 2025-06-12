@@ -10,6 +10,16 @@ using TMPro;
  * 4. 클릭할 때마다 파티클 시스템을 사용해서 부스러기 효과를 만듭니다
  * 5. 코루틴을 사용한 자동 공격 기능이 있습니다
  * 6. 콘솔창에 클릭 정보를 출력합니다 (디버깅용)
+ * 
+ * 코루틴이 뭔가요? 
+ * "일정 시간마다 자동으로 반복 실행되는 함수"
+ *  yield return new WaitForSeconds(1f);
+→ "1초 기다렸다가 다음 줄 실행"
+while(true)
+→ "무한 반복"
+자세하게 공부하고 싶으면 링크 
+* https://docs.unity3d.com/kr/current/Manual/Coroutines.html
+https://www.notion.so/Coroutine-2012af085dae80329b92c72d50140991
  */
 
 public class ClickEvent : MonoBehaviour
