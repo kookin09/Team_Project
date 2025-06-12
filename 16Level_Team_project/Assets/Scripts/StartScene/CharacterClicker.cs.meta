@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: ddf25b0c413dd4e469e81f3f68d89047
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - clickEffectPrefab: {fileID: 265544315488919900, guid: 733d34a1437b5da40918e636ef88a54b, type: 3}
+  - scoreText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
