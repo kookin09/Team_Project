@@ -1868,7 +1868,6 @@ GameObject:
   - component: {fileID: 978587244}
   - component: {fileID: 978587243}
   - component: {fileID: 978587245}
-  - component: {fileID: 978587246}
   m_Layer: 0
   m_Name: WeaponManager
   m_TagString: Untagged
@@ -1928,19 +1927,6 @@ MonoBehaviour:
   OutFitkBtn: {fileID: 2141745668}
   WeaponCostom: {fileID: 1010000628}
   Sword: {fileID: 56576846}
---- !u!114 &978587246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978587242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a232dc7ee62ac54988da1bc9976d329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UpgreadeBtn: {fileID: 1770573286}
 --- !u!1 &1000898814
 GameObject:
   m_ObjectHideFlags: 0

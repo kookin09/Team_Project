@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponData : ScriptableObject
+
+
+public class WeaponData : MonoBehaviour
 {
-    [Header("버튼")] 
-    public GameObject UpgreadeBtn;
-    
-    
-    
+    public WeaponDataCentar WeaponDataCentar;
 }
