@@ -4,19 +4,45 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    public static StageManager Instance;
+
     public int currentStage = 1;
+    public int enemiesKilled = 0;
+    public int enemiesToKill = 5;
+
     public EnemySpawner enemySpawner;
     public StageUIManager stageUiManager;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
-        StartStage(currentStage);
+        stageUiManager.UpdateStageUI(currentStage);
+        stageUiManager.UpdateKillCountUI(enemiesKilled, enemiesToKill);
+        enemySpawner.SpawnEnemy();
     }
-
-    public void StartStage(int stage)
+    public void OnEnemyKilled()
     {
-        currentStage = stage;
-        enemySpawner.SpawnEnemies(stage);
-        stageUiManager.UpdateStageUI(stage);
+        enemiesKilled++;
+        stageUiManager.UpdateKillCountUI(enemiesKilled,enemiesToKill);
+
+        if(enemiesKilled >= enemiesToKill)
+        {
+            currentStage++;
+            enemiesKilled = 0;
+
+            stageUiManager.UpdateStageUI(currentStage);
+            stageUiManager.UpdateKillCountUI(enemiesKilled, enemiesToKill);
+        }
+        enemySpawner.SpawnEnemy();
     }
 }

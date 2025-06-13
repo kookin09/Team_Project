@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyStatsTable : ScriptableObject
 {
     public string enemyName;
+    public Sprite enemySprite;
     public List<EnemyStageData> stageStats;
 
     public EnemyStageData GetStatsForStage(int stage)

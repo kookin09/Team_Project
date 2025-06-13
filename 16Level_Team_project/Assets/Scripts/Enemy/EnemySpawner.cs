@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public List<EnemyStatsTable> enemyPools;
     public GameObject enemyPrefab;
-    public Transform[] spawnPoints;
+    public Transform spawnPoints;
 
-    public void SpawnEnemies(int stage)
+    private GameObject currentEnemy;
+
+    public void SpawnEnemy()
     {
-        int enemyCount = stage * 2; // 스테이지 수에 비례해 증가
-
-        for (int i = 0; i < enemyCount; i++)
+        if(currentEnemy == null)
         {
-            int spawnIndex = Random.Range(0, spawnPoints.Length);
-            Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, Quaternion.identity);
+            var randomStatsTable = enemyPools[Random.Range(0, enemyPools.Count)];
+
+            currentEnemy = Instantiate(enemyPrefab, spawnPoints.position, Quaternion.identity);
+            Enemy enemy = currentEnemy.GetComponent<Enemy>();
+            enemy.statsTable = randomStatsTable;
+            enemy.Initialize(this, StageManager.Instance.currentStage);
         }
+    }
+    public void OnEnemyDefeated()
+    {
+        currentEnemy = null;
+        StageManager.Instance.OnEnemyKilled();
     }
 }
