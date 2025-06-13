@@ -416,8 +416,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 534528941}
   - {fileID: 2141745669}
+  - {fileID: 534528941}
   - {fileID: 1770573287}
   m_Father: {fileID: 1010000629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1212,7 +1212,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 534528943}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 978587245}
+        m_TargetAssemblyTypeName: WeaponBag, Assembly-CSharp
+        m_MethodName: OnclickFitBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &534528943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,6 +1868,7 @@ GameObject:
   - component: {fileID: 978587244}
   - component: {fileID: 978587243}
   - component: {fileID: 978587245}
+  - component: {fileID: 978587246}
   m_Layer: 0
   m_Name: WeaponManager
   m_TagString: Untagged
@@ -1911,12 +1924,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a35278f0be94149a11ac4403a2fee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FitBtn: {fileID: 534528940}
+  OutFitkBtn: {fileID: 2141745668}
+  WeaponCostom: {fileID: 1010000628}
+  Sword: {fileID: 56576846}
+--- !u!114 &978587246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978587242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a232dc7ee62ac54988da1bc9976d329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   WeaponBtn: {fileID: 1993032711}
   BackBtn: {fileID: 1354634066}
-  fitBtn: {fileID: 534528940}
+  FitBtn: {fileID: 534528940}
   OutFitkBtn: {fileID: 2141745668}
   UpgreadeBtn: {fileID: 1770573286}
-  WeaponCostom: {fileID: 1010000628}
 --- !u!1 &1000898814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,7 +2037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1010000629
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4546,7 +4574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2141745669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4610,7 +4638,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2141745671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 978587245}
+        m_TargetAssemblyTypeName: WeaponBag, Assembly-CSharp
+        m_MethodName: OnclickOutFitBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2141745671
 MonoBehaviour:
   m_ObjectHideFlags: 0
