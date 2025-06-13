@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// Get~() : 읽기전용함수,Set~() : 쓰기전용 함수
+/// Get~() : 읽기전용함수,Set~() : 조건부 쓰기전용 함수
 /// </summary>
 public class Player 
 {
@@ -26,10 +26,13 @@ public class Player
     BigInteger basicGold = new BigInteger(200000);
     BigInteger UpgradeCost = new BigInteger(5000); //이건 나중에 테이블에서 가져와야함
 
-    
+    int basicSTRLevel = 1;
+    int basicDEFLevel = 1;
+    int basicHPLevel = 1;
+    int basicCRTLevel = 1;
 
 
-    
+
 
     public BigInteger GetUpgradeCost()
     {
@@ -42,9 +45,9 @@ public class Player
     }
 
     /// <summary>
-    /// 올릴 공격력 매개변수 int값
+    /// SetBasicSTR(int값), 올릴 공격력 매개변수 int값
     /// </summary>
-    /// <param name="BasicSTR"></param>
+    /// <param name="BasicSTR">증가시킬 공격력 값 (int)</param>
     public void SetBasicSTR(int BasicSTR)
     {
         if (basicGold >= UpgradeCost)

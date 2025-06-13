@@ -28,7 +28,10 @@ public class UIPlayer : MonoBehaviour
 
     static readonly string[] stringPreset = {
         "", "K", "M", "B", "T", // 10^3 ~ 10^12
-        "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al","am","an","aO","ap","aq","ar","as","at","au","av","aw","ax","ay","az" // 10^15 ~ 10^48
+        "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj",
+        "ak", "al","am","an","aO","ap","aq","ar","as","at","au","av",
+        "aw","ax","ay","az" // 10^15 ~ 10^48
+
     };
 
 
