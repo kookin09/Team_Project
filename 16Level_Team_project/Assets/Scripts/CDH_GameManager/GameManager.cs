@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public PlayerData playerData;
+    public Player player { get; private set; }
+
 
     private void Awake()
     {
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        player = new Player();
         DontDestroyOnLoad(gameObject);
 
         //LoadPlayerData();     //      나중에 구현할 부분
