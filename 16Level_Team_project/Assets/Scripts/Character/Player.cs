@@ -3,30 +3,33 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+
+/// <summary>
+/// Get~() : 읽기전용함수,Set~() : 쓰기전용 함수
+/// </summary>
+public class Player 
 {
+
+    public Player()
+    {
+        Debug.Log("생성자 호출");
+    }
+
     [SerializeField]
     SOPlayerStat playerstatSO;
 
-    int basicSTR = 10;
-    int basicDEF = 10;
+    int basicSTR = 11;
+    int basicDEF = 12;
     int basicHP = 100;
     float basicCRT = 0f;
     
     BigInteger basicGold = new BigInteger(200000);
+    BigInteger UpgradeCost = new BigInteger(5000); //이건 나중에 테이블에서 가져와야함
 
-    BigInteger UpgradeCost = new BigInteger(5000);
-
-    void Start()
-    {
-
-    }
+    
 
 
-    public void CurPlayerStat()
-    {
-        
-    }
+    
 
     public BigInteger GetUpgradeCost()
     {
@@ -44,7 +47,7 @@ public class Character : MonoBehaviour
     /// <param name="BasicSTR"></param>
     public void SetBasicSTR(int BasicSTR)
     {
-        if (UpgradeCost<=basicGold)
+        if (basicGold >= UpgradeCost)
         {
             basicSTR += BasicSTR;
         }
@@ -57,9 +60,9 @@ public class Character : MonoBehaviour
 
     public void SetBasicDEF(int BasicDEF)
     {
-        if (UpgradeCost <= basicGold)
+        if (basicGold >= UpgradeCost)
         {
-            basicSTR += BasicDEF;
+            basicDEF += BasicDEF;
         }
         else { Debug.Log("방어력강화에서 오류 발생"); }
     }
@@ -69,7 +72,7 @@ public class Character : MonoBehaviour
     }
     public void SetBasicHP(int BasicHP)
     {
-        if (UpgradeCost <= basicGold)
+        if (basicGold >= UpgradeCost)
         {
             basicHP += BasicHP;
         }
@@ -81,7 +84,10 @@ public class Character : MonoBehaviour
     }
     public void SetBasicCRT(float BasicCRT)
     {
-        if (UpgradeCost <= basicGold)
+        //이걸 여기서 판정하면 안되네  100일때 조건이 만족하니까 105가 되는데
+        //매니저에서 100넘어가면 다 100으로 판정하거나
+        //버튼에 get으로 판정 해야할듯
+        if (basicCRT<=100 && basicGold >= UpgradeCost)
         {
             basicCRT += BasicCRT;
         }
@@ -91,6 +97,10 @@ public class Character : MonoBehaviour
     {
         return basicGold;
     }
+    /// <summary>
+    /// SetBasicGold(업그레이드비용)
+    /// </summary>
+    /// <param name="Gold"></param>
     public void SetBasicGold(BigInteger Gold)
     {
         if (basicGold >= UpgradeCost)
