@@ -12,7 +12,7 @@ public class Player
 
     public Player()
     {
-
+        Debug.Log("생성자 호출");
     }
 
     [SerializeField]

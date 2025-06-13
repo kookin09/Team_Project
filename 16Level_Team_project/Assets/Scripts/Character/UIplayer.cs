@@ -11,6 +11,10 @@ public class UIPlayer : MonoBehaviour
     [SerializeField]
     Player player ;
 
+    public TMP_InputField showmeTheMoney;
+    public string input;
+
+
     public TextMeshProUGUI ouputgold;
     public TextMeshProUGUI curSTR;
     public TextMeshProUGUI curDEF;
