@@ -11,6 +11,11 @@ public class SOPlayerStat : ScriptableObject
     string[] levelCharTable = { "maxLevelRange100", "maxLevelRange200", "maxLevelRange300", "maxLevelRange400", "maxLevelRange500",
             "maxLevelRange600", "maxLevelRange700", "maxLevelRange800", "maxLevelRange900", "maxLevelRange1_000" };
 
+    public string[] GetLevelCharTable()
+    {
+        return levelCharTable;
+    }
+
     [SerializeField]
     Dictionary<string, int> levelCostTable = new Dictionary<string, int>()
         {
@@ -25,5 +30,10 @@ public class SOPlayerStat : ScriptableObject
             {"maxLevelRange900",80_000 },
             {"maxLevelRange1_000",100_000 },
         };
+
+    public Dictionary<string, int> GetLevelCostTable()
+    {
+        return levelCostTable;
+    }
 
 }

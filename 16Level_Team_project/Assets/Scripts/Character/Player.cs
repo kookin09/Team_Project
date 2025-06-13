@@ -96,7 +96,7 @@ public class Player
         }
         else { Debug.Log("치명타강화에서 오류 발생"); }
     }
-    public BigInteger GetbasicGold()
+    public BigInteger GetBasicGold()
     {
         return basicGold;
     }
@@ -113,6 +113,40 @@ public class Player
         else { Debug.Log("돈쓰기 오류 발생"); }
     }
 
+    public int GetBasicSTRLevel()
+    {
+        return basicSTRLevel;
+    }
+    public void SetBasicSTRLevel(int basicSTRLevel)
+    {
+        this.basicSTRLevel += basicSTRLevel;
+    }
+
+
+    public int GetBasicDEFLevel()
+    {
+        return basicDEFLevel;
+    }
+    public void SetBasicDEFLevel(int basicDEFLevel)
+    {
+        this.basicDEFLevel += basicDEFLevel;
+    }
+    public int GetBasicHPLevel()
+    {
+        return basicHPLevel;
+    }
+    public void SetBasicHPLevel(int basicHPLevel)
+    {
+        this.basicHPLevel += basicHPLevel;
+    }
+    public int GetBasicCRTLevel()
+    {
+        return basicCRTLevel;
+    }
+    public void SetBasicCRTLevel(int basicCRTLevel)
+    {
+        this.basicCRTLevel += basicCRTLevel;
+    }
 
     /// <summary>
     /// 이 매개변수엔 원하는 만큼 돈복사가능BigInteger
@@ -122,4 +156,8 @@ public class Player
     {
         basicGold += Gold;
     }
+
+    
+
+
 }

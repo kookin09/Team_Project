@@ -1,22 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class CalTabelPl : MonoBehaviour
 {
     void Start()
     {
-
-
-        string quotes = "~";
-
         int nowLevel = 0;
 
         string[] levelCharTable = { "maxLevelRange100", "maxLevelRange200", "maxLevelRange300", "maxLevelRange400", "maxLevelRange500",
             "maxLevelRange600", "maxLevelRange700", "maxLevelRange800", "maxLevelRange900", "maxLevelRange1_000" };
 
 
-        Dictionary<string, int> levelCostTable = new Dictionary<string, int>()
+        Dictionary<string, BigInteger> levelCostTable = new Dictionary<string, BigInteger>()
         {
             {"maxLevelRange100",500 },
             {"maxLevelRange200",1_000 },
@@ -34,7 +31,7 @@ public class CalTabelPl : MonoBehaviour
         {
 
 
-            Debug.Log((100 * i + 1) + quotes + (i * 100 + 100));
+            //Debug.Log((100 * i + 1) + quotes + (i * 100 + 100));
 
             //minLevelRange ~ MaxLevelRange
             //1~100 maxLevelRange100 ,
@@ -51,7 +48,7 @@ public class CalTabelPl : MonoBehaviour
                 string nowCostTierStingKey = levelCharTable[i];
 
                 //꺼내온걸 바탕으로 딕셔너리에서 골드값을 계산해
-                int GoldCost = levelCostTable[$"{nowCostTierStingKey}"];
+                BigInteger GoldCost = levelCostTable[$"{nowCostTierStingKey}"];
                 nowLevel += 1;
 
             }
