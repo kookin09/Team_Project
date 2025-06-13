@@ -43,11 +43,19 @@ public class WeaponManager : MonoBehaviour
         NameweaponText.text = Weapon.Nameweapon; //일반 화면
         LvweaponText.text = Weapon.Lvweapon.ToString();
         PowerweaponText.text = Weapon.Powerweapon.ToString();
-        critChanceText.text = Weapon.critChance.ToString();
+        critChanceText.text = Weapon.critChance.ToString("F1")+ "%";
 
         InputNameweaponText.text = Weapon.InputWeapon; //가방 화면
         InputLvweaponText.text = Weapon.Inputweaponlv.ToString();
         InputPowerweaponText.text = Weapon.Inputweaponpower.ToString();
-        InputcritChanceText.text = Weapon.Inputchancecrit.ToString();
+        InputcritChanceText.text = Weapon.Inputchancecrit.ToString("F1")+ "%";
+    }
+    
+    public void Reset() //무기를 해제했을때 
+    {
+        NameweaponText.text = "빈손";
+        LvweaponText.text = "1";
+        PowerweaponText.text = "10";
+        critChanceText.text = "0.0%";
     }
 }
