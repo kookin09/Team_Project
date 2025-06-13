@@ -7,6 +7,69 @@ public class CalTabelPl : MonoBehaviour
     void Start()
     {
 
+
+        string quotes = "~";
+
+        int nowLevel = 0;
+
+        string[] levelCharTable = { "maxLevelRange100", "maxLevelRange200", "maxLevelRange300", "maxLevelRange400", "maxLevelRange500",
+            "maxLevelRange600", "maxLevelRange700", "maxLevelRange800", "maxLevelRange900", "maxLevelRange1_000" };
+
+
+        Dictionary<string, int> levelCostTable = new Dictionary<string, int>()
+        {
+            {"maxLevelRange100",500 },
+            {"maxLevelRange200",1_000 },
+            {"maxLevelRange300",3_000 },
+            {"maxLevelRange400",5_000 },
+            {"maxLevelRange500",8_000 },
+            {"maxLevelRange600",10_000 },
+            {"maxLevelRange700",30_000 },
+            {"maxLevelRange800",50_000 },
+            {"maxLevelRange900",80_000 },
+            {"maxLevelRange1_000",100_000 },
+        };
+
+        for (int i = 0; i < 10; i++)
+        {
+
+
+            Debug.Log((100 * i + 1) + quotes + (i * 100 + 100));
+
+            //minLevelRange ~ MaxLevelRange
+            //1~100 maxLevelRange100 ,
+            //101~200 maxLevelRange200,
+            //201~300 maxLevelRange300
+            int minLevelRange = (100 * i + 1);
+            int maxLevelRange = (i * 100 + 100);
+
+            //할필요가 있나? 아 해당 범위에 있을때에서 for문 break하면 되네
+            //예를 들면 500이야now레벨이 그러면 if문은 첫번쨰는 100~101이니까 통과를 안하겠지? 그리고 5번쨰 for문이 될때 if문 로직이 돌아가겠지?
+            if (nowLevel >= minLevelRange && nowLevel <= maxLevelRange)
+            {
+                //딕셔너리에서 해당키값을 바탕으로 밸류를 불러오기 위해 i번째 코스트 티어배열에서 꺼내오고 
+                string nowCostTierStingKey = levelCharTable[i];
+
+                //꺼내온걸 바탕으로 딕셔너리에서 골드값을 계산해
+                int GoldCost = levelCostTable[$"{nowCostTierStingKey}"];
+                nowLevel += 1;
+
+            }
+
+
+        }
+
+    }
+
+
+}
+
+
+#region 더미코드
+
+
+/*
+ * 
         //현재레벨을 레벨 범위테이블에서 탐색
         //찾은 범위에서 char형 ex ) a를 반환
         //해당구간당 코스트 값 증가량을 산출
@@ -18,31 +81,11 @@ public class CalTabelPl : MonoBehaviour
         //아닌가? 내가 하던 게임들에는 어떻게했지?아 맞네
         //현재 코스트가 얼마인지를 정해주는 변수가 필요하고 그게 아마 플레이어의 GetUpgradeCost 고 거기에 계속 500원씩 더해주는거네 맞네 아 그러면 이렇게 하는게 맞네
         //보면 그럼  레벨당 변하는 코스트량도 있었나? 몰라 그냥 해
-        
-        
-        
-        string quotes = "~";
 
-        int nowlevel = 0;
-        int cost=0;
 
-        char[] levelCharTable = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', };
-
-        char nowCharTable;
-
-        for (int n = 0; n < 10; n++)
-        {
-
-            //minLevelRange ~ MaxLevelRange
-            //디버그의 플러스 문자 연산은 ()를 붙여야 계산을 해주네 근데 100+100이건 되는데 뭐지?
-            Debug.Log((100 * n + 1) + quotes + (n * 100 + 100));
-
-            
-            int minLevelRange = (100 * n + 1);
-            int maxLevelRange = (n * 100 + 100);
-            
-
-            if (maxLevelRange ==100)
+ * int[] levelIntTable = { 500, 1_000, 3_000, 5_000, 8_000, 10_000, 30_000, 50_000, 80_000, 100_000 };
+        //안그래도 이거 다 숫자를 변수에 담으면 헷갈릴거같았는데 스트링으로 판정하면 엄청 쉽네 //해시테이블 엄청 빠르대 빼먹지말고 주말에 공부해라
+if (maxLevelRange ==100)
             {
 
                 cost += 500;
@@ -123,10 +166,23 @@ public class CalTabelPl : MonoBehaviour
                     cost = 2_000;
                     break;
             }
-        }
-
-    }
 
 
-}
+
+
+
+
+*/
+#endregion
+
+
+
+
+
+
+
+
+
+
+
 
