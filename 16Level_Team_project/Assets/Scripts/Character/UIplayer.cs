@@ -11,6 +11,9 @@ public class UIPlayer : MonoBehaviour
     [SerializeField]
     Player player ;
 
+    [SerializeField]
+    EnhanceBasicStat enhance;
+
     public TMP_InputField showmeTheMoney;
     public string input;
 
@@ -21,20 +24,30 @@ public class UIPlayer : MonoBehaviour
     public TextMeshProUGUI curHP;
     public TextMeshProUGUI curCRT;
 
+    public TextMeshProUGUI STRCoinValue;
+    public TextMeshProUGUI DEFCoinValue;
+    public TextMeshProUGUI HPCoinValue;
+    public TextMeshProUGUI CRTCoinValue;
+    //public TextMeshProUGUI strCoinValue;
 
+    
     //테스트골드
     public TextMeshProUGUI moneyGold;
     public string outputStringGold;
 
     static readonly string[] stringPreset = {
         "", "K", "M", "B", "T", // 10^3 ~ 10^12
-        "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj", "ak", "al","am","an","aO","ap","aq","ar","as","at","au","av","aw","ax","ay","az" // 10^15 ~ 10^48
+        "aa", "ab", "ac", "ad", "ae", "af", "ag", "ah", "ai", "aj",
+        "ak", "al","am","an","aO","ap","aq","ar","as","at","au","av",
+        "aw","ax","ay","az" // 10^15 ~ 10^48
+
     };
 
 
     void Start()
     {
         player = GameManager.Instance.player;
+
     }
 
     void Update()
@@ -72,25 +85,54 @@ public class UIPlayer : MonoBehaviour
         curHP.text = $"Now HP :{GameManager.Instance.player.GetBasicHP()}";
         curCRT.text = $"Now CRT :{GameManager.Instance.player.GetBasicCRT()}";
         //골드
-        ouputgold.text = CalGoldOutPut(GameManager.Instance.player.GetbasicGold());
+        ouputgold.text = CalGoldOutPut(GameManager.Instance.player.GetBasicGold());
+
+
+        //strCoinValue.text =
+        //DEFCoinValue.text =
+        //HPCoinValue.text =
+        //CRTCoinValue.text =
 
     }
-
 
     public void UpgradeSTR()
     {
-        GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetUpgradeCost());
-        GameManager.Instance.player.SetBasicSTR(5);
+        if (enhance.EnhancePlayerBsaicStat("STR",out BigInteger costCoin))
+        {
+            Debug.Log("강화성공");
+            STRCoinValue.text = CalGoldOutPut(costCoin);
+}
+        else
+        {
+            Debug.Log("강화실패");
+
+        }
     }
     public void UpgradeDEF()
     {
-        GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetUpgradeCost());
-        GameManager.Instance.player.SetBasicDEF(5);
+        if (enhance.EnhancePlayerBsaicStat("DEF", out BigInteger costCoin))
+        {
+            Debug.Log("강화성공");
+            DEFCoinValue.text = CalGoldOutPut(costCoin);
+        }
+        else
+        {
+            Debug.Log("강화실패");
+
+        }
     }
     public void UpgradeHP()
     {
-        GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetUpgradeCost());
-        GameManager.Instance.player.SetBasicHP(5);
+        if (enhance.EnhancePlayerBsaicStat("HP", out BigInteger costCoin))
+        {
+            Debug.Log("강화성공");
+            HPCoinValue.text = CalGoldOutPut(costCoin);
+        }
+        else
+        {
+            Debug.Log("강화실패");
+
+        }
     }
     public void UpgradeCRT()
     {
@@ -99,10 +141,18 @@ public class UIPlayer : MonoBehaviour
         //float calCRT = player.SetBasicCRT(5);
 
         float result = maxCRT + addCRT;
-        if (player.GetbasicGold() >= player.GetUpgradeCost() && result <= 100)
+        if (player.GetBasicGold() >= player.GetUpgradeCost() && result <= 100)
         {
-            GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetUpgradeCost());
-            GameManager.Instance.player.SetBasicCRT(5);
+            if (enhance.EnhancePlayerBsaicStat("CRT", out BigInteger costCoin))
+            {
+                Debug.Log("강화성공");
+                CRTCoinValue.text = CalGoldOutPut(costCoin);
+            }
+            else
+            {
+                Debug.Log("강화실패");
+
+            }
         }
         else
         {
@@ -120,6 +170,12 @@ public class UIPlayer : MonoBehaviour
 
         GameManager.Instance.player.CheatGoldMethod(999999999999);
     }
+
+
+
+
+    
+
 }
 
 
