@@ -6,7 +6,9 @@ public class PlayerData
 
     public int attackLevel;         //      공격력 레벨
     public int baseAttack;          //      기본 공격력
-    //
+    public int basicSTR;
+    public int basicDEF;
+    public int basicHP;
 
     public int critLevel;           //      치명타 레벨
     public float critChance;        //      치명타 확률
