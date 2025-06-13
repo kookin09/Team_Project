@@ -3,6 +3,7 @@ public class PlayerData
 {
     public int currentStage;        //      현재 스테이지
     public int gold;                //      보유 골드
+    public int getGold;             //      돈을 얻을 때
 
     public int attackLevel;         //      공격력 레벨
     public int basicSTR;            //      기본 공격력
@@ -25,4 +26,5 @@ public class PlayerData
     //public WeaponData equippedWeapon;
 
     public string playerName;       //      플레이어 이름
+
 }

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        player = new Player();
+        player = new Player(); 
         DontDestroyOnLoad(gameObject);
 
         LoadPlayerData();       //      나중에 구현되는 부분
