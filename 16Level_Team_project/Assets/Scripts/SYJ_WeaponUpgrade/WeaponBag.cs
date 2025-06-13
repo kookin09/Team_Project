@@ -29,7 +29,6 @@ public class WeaponBag : MonoBehaviour
         OutFitkBtn.SetActive(false); //장착 버튼이 꺼진다
         
         Sword.SetActive(true);//웨폰무기사진이 뜬다
-        //능력치 숫자 보임
     }
 
     public void OnclickFitBtn() //장착중버튼
@@ -38,6 +37,5 @@ public class WeaponBag : MonoBehaviour
         OutFitkBtn.SetActive(true); //장착 버튼이 켜진다
         
         Sword.SetActive(false);//웨폰무기사진이 꺼진다
-        //능력치 숫자 0으로 
     }
 }

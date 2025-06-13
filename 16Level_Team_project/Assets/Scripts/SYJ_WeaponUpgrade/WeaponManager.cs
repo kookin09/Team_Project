@@ -14,6 +14,13 @@ public class WeaponManager : MonoBehaviour
     public TextMeshProUGUI PowerweaponText;
     public TextMeshProUGUI critChanceText;
     
+    [Header("바뀔 가방무기이름")]
+    public TextMeshProUGUI  InputNameweaponText;
+    public TextMeshProUGUI InputLvweaponText;
+    public TextMeshProUGUI InputPowerweaponText;
+    public TextMeshProUGUI InputcritChanceText;
+    
+    
     private void Awake() 
     {
         if (Instance == null)
@@ -33,10 +40,14 @@ public class WeaponManager : MonoBehaviour
 
     public void ReWeapon() //하나하나 선언 하지 않아도 이것만 사용해서 내용 바뀌게 해주는 문구
     {
-        NameweaponText.text = Weapon.Nameweapon;
+        NameweaponText.text = Weapon.Nameweapon; //일반 화면
         LvweaponText.text = Weapon.Lvweapon.ToString();
         PowerweaponText.text = Weapon.Powerweapon.ToString();
         critChanceText.text = Weapon.critChance.ToString();
+
+        InputNameweaponText.text = Weapon.InputWeapon; //가방 화면
+        InputLvweaponText.text = Weapon.Inputweaponlv.ToString();
+        InputPowerweaponText.text = Weapon.Inputweaponpower.ToString();
+        InputcritChanceText.text = Weapon.Inputchancecrit.ToString();
     }
-    
 }
