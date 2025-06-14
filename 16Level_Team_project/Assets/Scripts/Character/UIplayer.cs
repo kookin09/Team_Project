@@ -54,8 +54,6 @@ public class UIPlayer : MonoBehaviour
     void Start()
     {
         player = GameManager.Instance.player;
-        STRCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowUpgradeCost());
-        Debug.Log("시작 공격력 레벨: " + GameManager.Instance.player.GetBasicSTRLevel() + "입니다.");
 
 
         StartSettingUI();
@@ -121,12 +119,41 @@ public class UIPlayer : MonoBehaviour
 
     }
 
+    public void UpgradeSTR10()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            UpgradeSTR();
+        }
+    }
+    public void UpgradeDEF10()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            UpgradeDEF();
+        }
+    }
+    public void UpgradeHP10()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            UpgradeHP();
+        }
+    }
+    public void UpgradeCRT10()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            UpgradeCRT();
+        }
+    }
+
     public void UpgradeSTR()
     {
         if (enhance.EnhancePlayerBsaicStat("STR", out BigInteger costCoin))
         {
             Debug.Log("강화성공");
-            STRCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowUpgradeCost());//CalGoldOutPut(costCoin);
+            STRCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowSTRUpgradeCost());//CalGoldOutPut(costCoin);
         }
         else
         {
@@ -139,7 +166,7 @@ public class UIPlayer : MonoBehaviour
         if (enhance.EnhancePlayerBsaicStat("DEF", out BigInteger costCoin))
         {
             Debug.Log("강화성공");
-            DEFCoinValue.text = CalGoldOutPut(costCoin);
+            DEFCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowDEFUpgradeCost());
         }
         else
         {
@@ -152,7 +179,7 @@ public class UIPlayer : MonoBehaviour
         if (enhance.EnhancePlayerBsaicStat("HP", out BigInteger costCoin))
         {
             Debug.Log("강화성공");
-            HPCoinValue.text = CalGoldOutPut(costCoin);
+            HPCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowHPUpgradeCost());
         }
         else
         {
@@ -162,12 +189,12 @@ public class UIPlayer : MonoBehaviour
     }
     public void UpgradeCRT()
     {
-        float addCRT = 5;//추후 테이블에 따라 달라질것임
+        float addCRT = 1;//추후 테이블에 따라 달라질것임
         float maxCRT = player.GetBasicCRT();
         //float calCRT = player.SetBasicCRT(5);
 
         float result = maxCRT + addCRT;
-        if (player.GetBasicGold() >= player.GetNowUpgradeCost() && result <= 100)
+        if (player.GetBasicGold() >= player.GetNowCRTUpgradeCost() && result < 100)
         {
             if (enhance.EnhancePlayerBsaicStat("CRT", out BigInteger costCoin))
             {
