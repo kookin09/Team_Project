@@ -24,7 +24,7 @@ public class Player
     float basicCRT = 0f;
     
     BigInteger basicGold = new BigInteger(200000);
-    BigInteger UpgradeCost = new BigInteger(5000); //이건 나중에 테이블에서 가져와야함
+    BigInteger nowUpgradeCost = new BigInteger(0); //이건 나중에 테이블에서 가져와야함
 
     int basicSTRLevel = 1;
     int basicDEFLevel = 1;
@@ -34,9 +34,13 @@ public class Player
 
 
 
-    public BigInteger GetUpgradeCost()
+    public BigInteger GetNowUpgradeCost()
     {
-        return UpgradeCost;
+        return nowUpgradeCost;
+    }
+    public void SetNowUpgradeCost(BigInteger accumulateCost)
+    {
+        nowUpgradeCost += accumulateCost;
     }
 
     public int GetBasicSTR()
@@ -50,7 +54,7 @@ public class Player
     /// <param name="BasicSTR">증가시킬 공격력 값 (int)</param>
     public void SetBasicSTR(int BasicSTR)
     {
-        if (basicGold >= UpgradeCost)
+        if (basicGold >= nowUpgradeCost)
         {
             basicSTR += BasicSTR;
         }
@@ -63,7 +67,7 @@ public class Player
 
     public void SetBasicDEF(int BasicDEF)
     {
-        if (basicGold >= UpgradeCost)
+        if (basicGold >= nowUpgradeCost)
         {
             basicDEF += BasicDEF;
         }
@@ -75,7 +79,7 @@ public class Player
     }
     public void SetBasicHP(int BasicHP)
     {
-        if (basicGold >= UpgradeCost)
+        if (basicGold >= nowUpgradeCost)
         {
             basicHP += BasicHP;
         }
@@ -90,7 +94,7 @@ public class Player
         //이걸 여기서 판정하면 안되네  100일때 조건이 만족하니까 105가 되는데
         //매니저에서 100넘어가면 다 100으로 판정하거나
         //버튼에 get으로 판정 해야할듯
-        if (basicCRT<=100 && basicGold >= UpgradeCost)
+        if (basicCRT<=100 && basicGold >= nowUpgradeCost)
         {
             basicCRT += BasicCRT;
         }
@@ -106,7 +110,7 @@ public class Player
     /// <param name="Gold"></param>
     public void SetBasicGold(BigInteger Gold)
     {
-        if (basicGold >= UpgradeCost)
+        if (basicGold >= nowUpgradeCost)
         {
             basicGold -= Gold;
         }

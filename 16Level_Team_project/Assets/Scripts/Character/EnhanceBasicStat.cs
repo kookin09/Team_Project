@@ -46,17 +46,19 @@ public class EnhanceBasicStat : MonoBehaviour
                 //여기 소모값 계산 한김에 골드도 줄여 그냥 다 계산 여기서하고UI에서는 숨기자이게 ui랑 로직이랑 분리맞는거같음이렇게하는게
                 if (nowGold >= GoldCost)
                 {
-                    Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GoldCost},현재 골드:{nowGold}");
+                    Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowUpgradeCost()},현재 골드:{nowGold}");
                     costCoin = GoldCost;
                     Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicSTRLevel());
 
-                    GameManager.Instance.player.SetBasicGold(GoldCost*i);
+                    //골드소모
+                    GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowUpgradeCost());
                     switch (statName)
                     {
                         case "STR":
                             GameManager.Instance.player.SetBasicSTRLevel(1);
                             GameManager.Instance.player.SetBasicSTR(5);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicSTR());
+                            GameManager.Instance.player.SetNowUpgradeCost(GoldCost);
                             return true;
 
                         case "DEF":

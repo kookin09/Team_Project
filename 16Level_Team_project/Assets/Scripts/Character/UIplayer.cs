@@ -9,7 +9,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class UIPlayer : MonoBehaviour
 {
     [SerializeField]
-    Player player ;
+    Player player;
 
     [SerializeField]
     EnhanceBasicStat enhance;
@@ -17,20 +17,27 @@ public class UIPlayer : MonoBehaviour
     public TMP_InputField showmeTheMoney;
     public string input;
 
-
+    [Header("현재 스탯")]
     public TextMeshProUGUI ouputgold;
     public TextMeshProUGUI curSTR;
     public TextMeshProUGUI curDEF;
     public TextMeshProUGUI curHP;
     public TextMeshProUGUI curCRT;
 
+    [Header("소모할 스탯당 골드")]
     public TextMeshProUGUI STRCoinValue;
     public TextMeshProUGUI DEFCoinValue;
     public TextMeshProUGUI HPCoinValue;
     public TextMeshProUGUI CRTCoinValue;
     //public TextMeshProUGUI strCoinValue;
 
-    
+    [Header("현재 스탯 레벨")]
+    public TextMeshProUGUI STRLevelTitle;
+    public TextMeshProUGUI DEFLevelTitle;
+    public TextMeshProUGUI HPLevelTitle;
+    public TextMeshProUGUI CRTLevelTitle;
+
+
     //테스트골드
     public TextMeshProUGUI moneyGold;
     public string outputStringGold;
@@ -47,17 +54,33 @@ public class UIPlayer : MonoBehaviour
     void Start()
     {
         player = GameManager.Instance.player;
+        STRCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowUpgradeCost());
+        Debug.Log("시작 공격력 레벨: " + GameManager.Instance.player.GetBasicSTRLevel() + "입니다.");
 
+
+        StartSettingUI();
     }
 
     void Update()
     {
         UpdateUI();
 
-        
+
+
+
+
     }
 
+    void StartSettingUI()
+    {
+        STRLevelTitle.text ="공격력 Lv "+ GameManager.Instance.player.GetBasicSTRLevel().ToString("N0");
+        DEFLevelTitle.text = "방어력 Lv " + GameManager.Instance.player.GetBasicDEFLevel().ToString("N0");
+        HPLevelTitle.text = "체력 Lv " + GameManager.Instance.player.GetBasicHPLevel().ToString("N0");
+        CRTLevelTitle.text = "크리티컬 Lv " + GameManager.Instance.player.GetBasicCRTLevel().ToString("N0");
 
+        Debug.Log("ui레벨타이틀세팅완료");
+
+    }
 
     public string CalGoldOutPut(BigInteger goldOutput)
     {
@@ -87,7 +110,10 @@ public class UIPlayer : MonoBehaviour
         //골드
         ouputgold.text = CalGoldOutPut(GameManager.Instance.player.GetBasicGold());
 
-
+        STRLevelTitle.text = "공격력 Lv " + GameManager.Instance.player.GetBasicSTRLevel().ToString("N0");
+        DEFLevelTitle.text = "방어력 Lv " + GameManager.Instance.player.GetBasicDEFLevel().ToString("N0");
+        HPLevelTitle.text = "체력 Lv " + GameManager.Instance.player.GetBasicHPLevel().ToString("N0");
+        CRTLevelTitle.text = "크리티컬 Lv " + GameManager.Instance.player.GetBasicCRTLevel().ToString("N0");
         //strCoinValue.text =
         //DEFCoinValue.text =
         //HPCoinValue.text =
@@ -97,11 +123,11 @@ public class UIPlayer : MonoBehaviour
 
     public void UpgradeSTR()
     {
-        if (enhance.EnhancePlayerBsaicStat("STR",out BigInteger costCoin))
+        if (enhance.EnhancePlayerBsaicStat("STR", out BigInteger costCoin))
         {
             Debug.Log("강화성공");
-            STRCoinValue.text = CalGoldOutPut(costCoin);
-}
+            STRCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowUpgradeCost());//CalGoldOutPut(costCoin);
+        }
         else
         {
             Debug.Log("강화실패");
@@ -141,7 +167,7 @@ public class UIPlayer : MonoBehaviour
         //float calCRT = player.SetBasicCRT(5);
 
         float result = maxCRT + addCRT;
-        if (player.GetBasicGold() >= player.GetUpgradeCost() && result <= 100)
+        if (player.GetBasicGold() >= player.GetNowUpgradeCost() && result <= 100)
         {
             if (enhance.EnhancePlayerBsaicStat("CRT", out BigInteger costCoin))
             {
@@ -174,7 +200,7 @@ public class UIPlayer : MonoBehaviour
 
 
 
-    
+
 
 }
 

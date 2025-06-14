@@ -1069,8 +1069,12 @@ MonoBehaviour:
   playerData:
     currentStage: 0
     gold: 0
+    getGold: 0
     attackLevel: 0
-    baseAttack: 0
+    basicSTR: 0
+    basicDEF: 0
+    basicHP: 0
+    basicCRT: 0
     critLevel: 0
     critChance: 0
     critMulti: 0
@@ -9757,6 +9761,10 @@ MonoBehaviour:
   DEFCoinValue: {fileID: 68893492}
   HPCoinValue: {fileID: 1710521201}
   CRTCoinValue: {fileID: 95795389}
+  STRLevelTitle: {fileID: 29479779}
+  DEFLevelTitle: {fileID: 909989080}
+  HPLevelTitle: {fileID: 750802233}
+  CRTLevelTitle: {fileID: 149058628}
   moneyGold: {fileID: 358598862}
   outputStringGold: 
 --- !u!114 &1550756596
