@@ -83,6 +83,11 @@ public class WeaponBag : MonoBehaviour
         
         Sword.SetActive(true);//웨폰무기사진이 뜬다
         
+        WeaponManager.Instance.Weapon.Lvweapon = WeaponManager.Instance.Weapon.Inputweaponlv;
+        WeaponManager.Instance.Weapon.Powerweapon = WeaponManager.Instance.Weapon.Inputweaponpower;
+        WeaponManager.Instance.Weapon.critChance = WeaponManager.Instance.Weapon.Inputchancecrit;
+        WeaponManager.Instance.Weapon.Nameweapon = WeaponManager.Instance.Weapon.InputWeapon;
+        
         WeaponManager.Instance.ReWeapon();
     }
 
@@ -99,39 +104,34 @@ public class WeaponBag : MonoBehaviour
     
     public void OnclickUpgradeBtn()
     { 
-        if (WeaponManager.Instance.Weapon.Inputweaponlv >= WeaponManager.Instance.Weapon.MaxLvweapon) //가방의 무기레벨이 최대치보다 클때
+        if (WeaponManager.Instance.Weapon.Inputweaponlv >= WeaponManager.Instance.Weapon.MaxLvweapon)
         {
             Debug.Log("이미 최대 레벨입니다.");
             return;
         }
-        
+
         int currentLevel = WeaponManager.Instance.Weapon.Inputweaponlv;
 
-        
-        if (critGrowthTable.TryGetValue(currentLevel, out double Inputchancecrit)) //치확
+        // 무기가방 치확은 항상 업데이트됨
+        if (critGrowthTable.TryGetValue(currentLevel, out double inputCrit))
         {
-            WeaponManager.Instance.Weapon.Inputchancecrit = Inputchancecrit;
+            WeaponManager.Instance.Weapon.Inputchancecrit = inputCrit;
         }
-        
-        if (critGrowthTable.TryGetValue(currentLevel, out double critChance))//가방 치확
-        {
-            WeaponManager.Instance.Weapon.critChance = critChance;
-        }
-        
-        
 
-        WeaponManager.Instance.Weapon.Lvweapon += 1; //레벨업
-        WeaponManager.Instance.Weapon.Inputweaponlv += 1; //무기가방 레벨업
+        WeaponManager.Instance.Weapon.Inputweaponlv += 1;
+        WeaponManager.Instance.Weapon.Inputweaponpower = powerGrowthTable[WeaponManager.Instance.Weapon.Inputweaponlv];
+
+        // 장착 상태일 때만 메인무기 수치도 같이 올림
+        if (FitBtn.activeSelf)
+        {
+            WeaponManager.Instance.Weapon.critChance = inputCrit;
+            WeaponManager.Instance.Weapon.Lvweapon += 1;
+            WeaponManager.Instance.Weapon.Powerweapon = powerGrowthTable[WeaponManager.Instance.Weapon.Lvweapon];
+        }
+
         Debug.Log("+1 레벨업 되었습니다.");
-        
-        WeaponManager.Instance.Weapon.Powerweapon = powerGrowthTable[WeaponManager.Instance.Weapon.Lvweapon]; //공격력 
-        WeaponManager.Instance.Weapon.Inputweaponpower = powerGrowthTable[WeaponManager.Instance.Weapon.Inputweaponlv]; //가방공격력
         Debug.Log("공격력이 올라갔습니다.");
-        
-        
-        
+
         WeaponManager.Instance.ReWeapon();
-        
-        
     }
 }

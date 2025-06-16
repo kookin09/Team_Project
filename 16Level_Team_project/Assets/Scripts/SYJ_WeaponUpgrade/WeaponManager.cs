@@ -53,9 +53,12 @@ public class WeaponManager : MonoBehaviour
     
     public void Reset() //무기를 해제했을때 
     {
-        NameweaponText.text = "빈손";
-        LvweaponText.text = "1";
-        PowerweaponText.text = "10";
-        critChanceText.text = "0.0%";
+        Weapon.Nameweapon = "빈손";
+        Weapon.Lvweapon = 1;
+        Weapon.Powerweapon = 10;
+        Weapon.critChance = 0f;
+
+        ReWeapon();
     }
+    
 }
