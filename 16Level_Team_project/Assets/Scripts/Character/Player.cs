@@ -30,10 +30,10 @@ public class Player
     BigInteger nowHPUpgradeCost = new BigInteger(0); 
     BigInteger nowCRTUpgradeCost = new BigInteger(0);
 
-    int basicSTRLevel = 1;
-    int basicDEFLevel = 1;
-    int basicHPLevel = 1;
-    int basicCRTLevel = 1;
+    int basicSTRLevel = 0;
+    int basicDEFLevel = 0;
+    int basicHPLevel = 0;
+    int basicCRTLevel = 0;
 
 
 
@@ -122,7 +122,7 @@ public class Player
         //이걸 여기서 판정하면 안되네  100일때 조건이 만족하니까 105가 되는데
         //매니저에서 100넘어가면 다 100으로 판정하거나
         //버튼에 get으로 판정 해야할듯
-        if (basicCRT<=100 && basicGold >= nowCRTUpgradeCost)
+        if (basicCRT<100 && basicGold >= nowCRTUpgradeCost)
         {
             basicCRT += BasicCRT;
         }
@@ -177,7 +177,13 @@ public class Player
     }
     public void SetBasicCRTLevel(int basicCRTLevel)
     {
-        this.basicCRTLevel += basicCRTLevel;
+        
+
+        if (basicCRT < 100 && basicGold >= nowCRTUpgradeCost)
+        {
+            this.basicCRTLevel += basicCRTLevel;
+        }
+        else { Debug.Log("치명타 레벨 강화에서 오류발생"); }
     }
 
     /// <summary>
