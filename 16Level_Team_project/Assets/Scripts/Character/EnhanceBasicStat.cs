@@ -53,25 +53,26 @@ public class EnhanceBasicStat : MonoBehaviour
                     {
                         case "STR":
 
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowSTRUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicSTRLevel());
 
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowSTRUpgradeCost());
-
                             GameManager.Instance.player.SetBasicSTRLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicSTRLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowSTRUpgradeCost()},현재 골드:{nowGold}");
+
                             GameManager.Instance.player.SetBasicSTR(5);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicSTR());
                             GameManager.Instance.player.SetNowSTRUpgradeCost(GoldCost);
                             return true;
 
                         case "DEF":
-
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowDEFUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicDEFLevel());
-
+                            
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowDEFUpgradeCost());
-
                             GameManager.Instance.player.SetBasicDEFLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicDEFLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowDEFUpgradeCost()},현재 골드:{nowGold}");
+
                             GameManager.Instance.player.SetBasicDEF(5);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicDEF());
                             GameManager.Instance.player.SetNowDEFUpgradeCost(GoldCost);
@@ -81,13 +82,14 @@ public class EnhanceBasicStat : MonoBehaviour
 
                         case "HP":
 
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowHPUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicHPLevel());
-
 
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowHPUpgradeCost());
-
                             GameManager.Instance.player.SetBasicHPLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicHPLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowHPUpgradeCost()},현재 골드:{nowGold}");
+
+
                             GameManager.Instance.player.SetBasicHP(50);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicHP());
                             GameManager.Instance.player.SetNowHPUpgradeCost(GoldCost);
@@ -97,13 +99,14 @@ public class EnhanceBasicStat : MonoBehaviour
 
                         case "CRT":
 
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowCRTUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicCRTLevel());
-
 
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowCRTUpgradeCost());
-
                             GameManager.Instance.player.SetBasicCRTLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicCRTLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowCRTUpgradeCost()},현재 골드:{nowGold}");
+
+
                             GameManager.Instance.player.SetBasicCRT(1);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicCRT());
                             GameManager.Instance.player.SetNowCRTUpgradeCost(GoldCost);
