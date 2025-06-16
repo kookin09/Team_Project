@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Numerics;
 /* 이 코드가 하는 일:
  * 1. 오브젝트를 마우스로 클릭하면 클릭 횟수가 증가합니다
  * 2. 화면에 현재 클릭 횟수를 표시합니다  
@@ -31,12 +30,14 @@ public class ClickEvent : MonoBehaviour
 
     public int clickCount = 0;
     public TextMeshProUGUI clickCountText;
+    public GameObject debrisParticlePrefab;
     public ParticleSystem debrisParticle;
     public bool autoAttackEnabled = false;
     public float autoAttackInterval = 1.0f;
     private Coroutine autoAttackCoroutine;
     private UnityEngine.Vector3 originalScale;      //      Numerics와 Unity의 Vector3 가 충돌나 앞에 "UnityEngine" 을 붙였습니다
     public ParticleSystem criticalParticle;
+    public GameObject criticalParticlePrefab;
     public float criticalChance = 30f;
     public static event System.Action<bool> OnAttackPerformed;
 
@@ -47,6 +48,12 @@ public class ClickEvent : MonoBehaviour
     // 원래 크기를 저장해둡니다 (클릭 효과 후 되돌리기 위해)
     void Start()
     {
+        GameObject go = Instantiate(debrisParticlePrefab, transform.position, Quaternion.identity);
+        debrisParticle = go.GetComponent<ParticleSystem>();
+
+        go = Instantiate(criticalParticlePrefab, transform.position, Quaternion.identity);
+        criticalParticle = go.GetComponent<ParticleSystem>();
+
         originalScale = transform.localScale;  // 원래 크기 저장
         UpdateClickText();
 
@@ -78,19 +85,19 @@ public class ClickEvent : MonoBehaviour
         bool isCritical = Random.Range(0f, 100f) < criticalChance;
 
         // 클릭 시 골드 획득 기능 (1 STR 당 10 골드 획득)
-        int str = GameManager.Instance.player.GetBasicSTR();
-        BigInteger goldToAdd = str * 10;
+        //int str = GameManager.Instance.player.GetBasicSTR();
+        //BigInteger goldToAdd = str * 10;
 
         OnAttackPerformed?.Invoke(isCritical);
 
         if (isCritical)
         {
-            goldToAdd *= 2;     //      치명타 시 골드 획득량 2배 기능
+            //goldToAdd *= 2;     //      치명타 시 골드 획득량 2배 기능
             Debug.Log("치명타!");
         }
 
-        GameManager.Instance.player.CheatGoldMethod(goldToAdd);
-        Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
+        //GameManager.Instance.player.CheatGoldMethod(goldToAdd);
+        //Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
 
 
         UpdateClickText();
@@ -155,6 +162,7 @@ public class ClickEvent : MonoBehaviour
         {
             targetParticle.transform.position = transform.position;
             targetParticle.Play();
+            Debug.Log("파티클");
         }
         else
         {
