@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Numerics;
 /* 이 코드가 하는 일:
  * 1. 오브젝트를 마우스로 클릭하면 클릭 횟수가 증가합니다
  * 2. 화면에 현재 클릭 횟수를 표시합니다  
@@ -34,7 +35,7 @@ public class ClickEvent : MonoBehaviour
     public bool autoAttackEnabled = false;
     public float autoAttackInterval = 1.0f;
     private Coroutine autoAttackCoroutine;
-    private Vector3 originalScale;
+    private UnityEngine.Vector3 originalScale;      //      Numerics와 Unity의 Vector3 가 충돌나 앞에 "UnityEngine" 을 붙였습니다
     public ParticleSystem criticalParticle;
     public float criticalChance = 30f;
     public static event System.Action<bool> OnAttackPerformed;
@@ -76,12 +77,20 @@ public class ClickEvent : MonoBehaviour
         // 치명타 판정 (0~100 사이 랜덤 숫자가 설정한 확률보다 작으면 치명타)
         bool isCritical = Random.Range(0f, 100f) < criticalChance;
 
+        // 클릭 시 골드 획득 기능 (1 STR 당 10 골드 획득)
+        int str = GameManager.Instance.player.GetBasicSTR();
+        BigInteger goldToAdd = str * 10;
+
         OnAttackPerformed?.Invoke(isCritical);
 
         if (isCritical)
         {
+            goldToAdd *= 2;     //      치명타 시 골드 획득량 2배 기능
             Debug.Log("치명타!");
         }
+
+        GameManager.Instance.player.CheatGoldMethod(goldToAdd);
+        Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
 
 
         UpdateClickText();
