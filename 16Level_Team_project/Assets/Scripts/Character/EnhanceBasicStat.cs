@@ -37,10 +37,10 @@ public class EnhanceBasicStat : MonoBehaviour
             if (nowLevel >= minLevelRange && nowLevel <= maxLevelRange)
             {
                 //딕셔너리에서 해당키값을 바탕으로 밸류를 불러오기 위해 i번째 코스트 티어배열에서 꺼내오고 
-                string nowCostTierStingKey = so.GetLevelCharTable()[i];
+                string nowCostTierStringKey = so.GetLevelCharTable()[i];
 
                 //꺼내온걸 바탕으로 딕셔너리에서 골드값을 계산해
-                BigInteger GoldCost = so.GetLevelCostTable()[$"{nowCostTierStingKey}"];
+                BigInteger GoldCost = so.GetLevelCostTable()[$"{nowCostTierStringKey}"];
 
                 //해당 i번째 딕셔너리에서 값을 꺼내오고 && 보유골드>= 소모 비용 일경우에만 강화가능 
                 //여기 소모값 계산 한김에 골드도 줄여 그냥 다 계산 여기서하고UI에서는 숨기자이게 ui랑 로직이랑 분리맞는거같음이렇게하는게
