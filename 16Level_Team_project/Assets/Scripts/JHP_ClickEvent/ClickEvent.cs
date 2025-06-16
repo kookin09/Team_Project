@@ -60,6 +60,7 @@ public class ClickEvent : MonoBehaviour
     // 이 함수가 하는 일: 수동 클릭 공격을 실행합니다
     void OnMouseDown()
     {
+        Debug.Log("Enemy 클릭됨!");
         PerformAttack();
     }
 
@@ -140,7 +141,7 @@ public class ClickEvent : MonoBehaviour
     void PlayDebrisEffect(bool isCritical = false)
     {
         ParticleSystem targetParticle;
-
+        Debug.Log("파티클 재생 시도: " + transform.position);
         // 치명타 여부에 따라 사용할 파티클 선택
         if (isCritical && criticalParticle != null)
         {

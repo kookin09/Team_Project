@@ -29,11 +29,11 @@ public class EnhanceBasicStat : MonoBehaviour
             //1~100 maxLevelRange100 ,
             //101~200 maxLevelRange200,
             //201~300 maxLevelRange300
-            int minLevelRange = (100 * i + 1);
-            int maxLevelRange = (i * 100 + 100);
+            int minLevelRange = (100 * i );
+            int maxLevelRange = (i * 100 + 99);
 
             //할필요가 있나? 아 해당 범위에 있을때에서 for문 break하면 되네
-            //예를 들면 500이야now레벨이 그러면 if문은 첫번쨰는 100~101이니까 통과를 안하겠지? 그리고 5번쨰 for문이 될때 if문 로직이 돌아가겠지?
+            //예를 들면 500이야now레벨이 그러면 if문은 첫번쨰는 1~100이니까 통과를 안하겠지? 그리고 5번쨰 for문이 될때 if문 로직이 돌아가겠지?
             if (nowLevel >= minLevelRange && nowLevel <= maxLevelRange)
             {
                 //딕셔너리에서 해당키값을 바탕으로 밸류를 불러오기 위해 i번째 코스트 티어배열에서 꺼내오고 
