@@ -17,9 +17,16 @@ MonoBehaviour:
   stageStats:
   - stage: 1
     monsterHP: 5
+    goldReward: 50
   - stage: 2
     monsterHP: 80
+    goldReward: 250
   - stage: 3
     monsterHP: 200
+    goldReward: 1250
   - stage: 4
     monsterHP: 600
+    goldReward: 6250
+  - stage: 5
+    monsterHP: 2000
+    goldReward: 31250
