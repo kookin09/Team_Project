@@ -9,6 +9,7 @@ public class StageManager : MonoBehaviour
     public int currentStage = 1;
     public int enemiesKilled = 0;
     public int enemiesToKill = 5;
+    public int currentGold = 0;
 
     public EnemySpawner enemySpawner;
     public StageUIManager stageUiManager;
@@ -44,5 +45,10 @@ public class StageManager : MonoBehaviour
             stageUiManager.UpdateKillCountUI(enemiesKilled, enemiesToKill);
         }
         enemySpawner.SpawnEnemy();
+    }
+    public void AddGold(int amount)
+    {
+        currentGold += amount;
+        stageUiManager.UpdateGoldUI(currentGold);
     }
 }
