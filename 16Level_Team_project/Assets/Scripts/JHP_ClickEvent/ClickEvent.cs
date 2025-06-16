@@ -29,7 +29,7 @@ public class ClickEvent : MonoBehaviour
     // 이벤트를 듣는다는건 다른 스크립트가 이 이벤트가 발생했을 때 특정 함수를 실행하도록 하는 것입니다
 
     public int clickCount = 0;
-    public TextMeshProUGUI clickCountText;
+    public TMP_Text clickCountText;
     public GameObject debrisParticlePrefab;
     public ParticleSystem debrisParticle;
     public bool autoAttackEnabled = false;
@@ -57,6 +57,8 @@ public class ClickEvent : MonoBehaviour
         originalScale = transform.localScale;  // 원래 크기 저장
         UpdateClickText();
 
+
+        Debug.Log("AutoAttack" + autoAttackEnabled);
         if (autoAttackEnabled)
         {
             StartAutoAttack();
@@ -109,9 +111,16 @@ public class ClickEvent : MonoBehaviour
     // 연결되어 있다면 "Combo: 숫자" 형태로 텍스트를 업데이트합니다
     void UpdateClickText()
     {
-        if (clickCountText != null)
+        Transform canvasTransform = GameObject.Find("Canvas").transform;
+        TextMeshProUGUI text = canvasTransform.Find("Count").GetComponent<TextMeshProUGUI>();
+
+        if (text != null)
         {
-            clickCountText.text = "Combo: " + clickCount;
+            text.text = "Combo: " + clickCount;
+        }
+        else 
+        {
+            Debug.Log("NULL입니다");
         }
     }
 

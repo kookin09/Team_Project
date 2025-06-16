@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /* 이 코드가 하는 일:
  * 1. 클릭 수에 따라 펫이 성장합니다 (알 → 작은펫 → 성인펫)
@@ -70,21 +71,6 @@ public class PetGrowthSystem : MonoBehaviour
     // 게임 시작할 때 실행되는 함수
     void Start()
     {
-        // ClickEvent 스크립트 찾기
-        clickEvent = FindObjectOfType<ClickEvent>();
-
-        // ClickEvent를 못 찾으면 경고 메시지 출력
-        if (clickEvent == null)
-        {
-            Debug.LogWarning("ClickEvent 스크립트를 찾을 수 없습니다!");
-        }
-        else
-        {
-            // ClickEvent를 찾았다면 자동클릭을 비활성화 상태로 설정
-            clickEvent.autoAttackEnabled = false;
-            Debug.Log("자동클릭이 비활성화되었습니다. (성인펫이 될 때까지 대기)");
-        }
-
         // 펫 이미지가 연결되지 않았으면 경고 메시지 출력
         if (petImage == null)
         {
