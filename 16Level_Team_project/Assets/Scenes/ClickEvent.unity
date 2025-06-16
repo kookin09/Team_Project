@@ -135,12 +135,12 @@ GameObject:
   - component: {fileID: 82374331}
   - component: {fileID: 82374330}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &82374329
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5688,10 +5688,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCount: 0
   clickCountText: {fileID: 82374330}
+  debrisParticlePrefab: {fileID: 4185113965615612456, guid: cd2b6ed008f200945baa396b6c71db5d, type: 3}
   debrisParticle: {fileID: 1811545902}
-  autoAttackEnabled: 1
+  autoAttackEnabled: 0
   autoAttackInterval: 1
   criticalParticle: {fileID: 451346283}
+  criticalParticlePrefab: {fileID: 6075960359339034960, guid: 8d1f0450a35f1d74a909c9d449a19aac, type: 3}
   criticalChance: 30
 --- !u!1 &1811545900
 GameObject:

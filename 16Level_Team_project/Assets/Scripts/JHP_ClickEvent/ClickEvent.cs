@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 /* 이 코드가 하는 일:
  * 1. 오브젝트를 마우스로 클릭하면 클릭 횟수가 증가합니다
  * 2. 화면에 현재 클릭 횟수를 표시합니다  
@@ -40,6 +41,7 @@ public class ClickEvent : MonoBehaviour
     public GameObject criticalParticlePrefab;
     public float criticalChance = 30f;
     public static event System.Action<bool> OnAttackPerformed;
+    public static event Action onMaxClicks; //"onMaxClicks" 이벤트는 클릭 횟수가 최대치에 도달했을 때 호출됩니다
 
     // 게임 시작 시 초기화 함수
     // 이 함수가 하는 일: 
@@ -83,9 +85,10 @@ public class ClickEvent : MonoBehaviour
     void PerformAttack()
     {
         clickCount++;
+        AttackMaximunCheck();
 
         // 치명타 판정 (0~100 사이 랜덤 숫자가 설정한 확률보다 작으면 치명타)
-        bool isCritical = Random.Range(0f, 100f) < criticalChance;
+        bool isCritical = UnityEngine.Random.Range(0f, 100f) < criticalChance;
 
         // 클릭 시 골드 획득 기능 (1 STR 당 10 골드 획득)
         //int str = GameManager.Instance.player.GetBasicSTR();
@@ -107,6 +110,18 @@ public class ClickEvent : MonoBehaviour
         ClickEffect(isCritical); // 치명타 여부를 전달
     }
 
+    void AttackMaximunCheck()
+    {
+
+        if (clickCount == 10 || clickCount == 50)
+        {
+            onMaxClicks?.Invoke(); //"onMaxClicks 이벤트가 null이 아닐 때 실행한다"는 뜻입니다.
+        }
+        //?.는 NULL 이 아닐시 실행한다라는 뜻. 이벤트를 등록한다 라는 뜻
+        // 선언부에 Action 을 사용시 무조건 따라와야하는 Invoke()함수.
+    }
+
+
     // 화면 텍스트 업데이트 함수
     // 이 함수가 하는 일: TextMeshPro 텍스트가 연결되어 있는지 확인하고,
     // 연결되어 있다면 "Combo: 숫자" 형태로 텍스트를 업데이트합니다
@@ -119,7 +134,7 @@ public class ClickEvent : MonoBehaviour
         {
             text.text = "Combo: " + clickCount;
         }
-        else 
+        else
         {
             Debug.Log("NULL입니다");
         }

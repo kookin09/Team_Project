@@ -130,6 +130,20 @@ public class PetGrowthSystem : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        ClickEvent.onMaxClicks += GrowToSmallPet;
+        //ClickEvent.onMaxClicks += GrowToAdultPet;
+        // small 과 adult 를 하나로 합쳐서 하나의 이벤트로 실행시키는 방법을 생각해볼것
+
+    }
+
+    private void OnDisable()
+    {
+        ClickEvent.onMaxClicks -= GrowToSmallPet;
+        //ClickEvent.onMaxClicks -= GrowToAdultPet;
+    }
+
     // 작은펫으로 성장하는 함수
     void GrowToSmallPet()
     {
