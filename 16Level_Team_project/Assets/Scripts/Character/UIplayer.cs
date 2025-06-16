@@ -17,6 +17,7 @@ public class UIPlayer : MonoBehaviour
     public TMP_InputField showmeTheMoney;
     public string input;
 
+
     [Header("현재 스탯")]
     public TextMeshProUGUI ouputgold;
     public TextMeshProUGUI curSTR;
@@ -64,7 +65,11 @@ public class UIPlayer : MonoBehaviour
         UpdateUI();
 
 
-
+        BigInteger result;
+        if (BigInteger.TryParse(outputStringGold, out result))
+        {
+            moneyGold.text = "Gold :" + CalGoldOutPut(result);
+        }
 
 
     }
