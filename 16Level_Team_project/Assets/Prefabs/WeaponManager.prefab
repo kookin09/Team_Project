@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1057665310641594343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5552610309843647677}
+  - component: {fileID: 292336924652913955}
+  - component: {fileID: 8048769862654260180}
+  m_Layer: 0
+  m_Name: WeaponManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5552610309843647677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057665310641594343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &292336924652913955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057665310641594343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c70fbc39464654f8d602054bf5dc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapon:
+    Nameweapon: "\uB098\uBB34\uAC80"
+    Lvweapon: 1
+    Powerweapon: 10
+    critChance: 0
+    MaxLvweapon: 20
+    InputWeapon: "\uB098\uBB34\uAC80"
+    Inputweaponlv: 1
+    Inputweaponpower: 0
+    Inputchancecrit: 0
+  NameweaponText: {fileID: 0}
+  LvweaponText: {fileID: 0}
+  PowerweaponText: {fileID: 0}
+  critChanceText: {fileID: 0}
+  InputNameweaponText: {fileID: 0}
+  InputLvweaponText: {fileID: 0}
+  InputPowerweaponText: {fileID: 0}
+  InputcritChanceText: {fileID: 0}
+--- !u!114 &8048769862654260180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057665310641594343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a35278f0be94149a11ac4403a2fee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FitBtn: {fileID: 0}
+  OutFitkBtn: {fileID: 0}
+  UpgradeBtn: {fileID: 0}
+  WeaponCostom: {fileID: 0}
+  Sword: {fileID: 0}
