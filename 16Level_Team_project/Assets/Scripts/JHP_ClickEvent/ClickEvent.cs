@@ -172,7 +172,6 @@ public class ClickEvent : MonoBehaviour
     void PlayDebrisEffect(bool isCritical = false)
     {
         ParticleSystem targetParticle;
-        Debug.Log("파티클 재생 시도: " + transform.position);
         // 치명타 여부에 따라 사용할 파티클 선택
         if (isCritical && criticalParticle != null)
         {

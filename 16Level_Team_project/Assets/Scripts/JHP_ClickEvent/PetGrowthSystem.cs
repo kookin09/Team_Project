@@ -132,16 +132,37 @@ public class PetGrowthSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        ClickEvent.onMaxClicks += GrowToSmallPet;
-        //ClickEvent.onMaxClicks += GrowToAdultPet;
-        // small 과 adult 를 하나로 합쳐서 하나의 이벤트로 실행시키는 방법을 생각해볼것
-
+        ClickEvent.onMaxClicks += HandleMaxClicksEvolution;  // 하나의 함수로 모든 진화 처리
     }
 
     private void OnDisable()
     {
-        ClickEvent.onMaxClicks -= GrowToSmallPet;
-        //ClickEvent.onMaxClicks -= GrowToAdultPet;
+        ClickEvent.onMaxClicks -= HandleMaxClicksEvolution;  // 하나의 함수로 모든 진화 처리
+    }
+
+    // 최대 클릭 이벤트가 발생했을 때 진화를 처리하는 함수 (새로 추가!)
+    private void HandleMaxClicksEvolution()
+    {
+        // ClickEvent 참조 찾기
+        if (clickEvent == null)
+        {
+            clickEvent = FindObjectOfType<ClickEvent>();
+        }
+
+        if (clickEvent == null) return;
+
+        int currentClicks = clickEvent.clickCount;
+
+        // 10클릭 달성 시 작은펫으로 진화
+        if (currentStage == PetStage.Egg && currentClicks >= eggToSmallPetClicks)
+        {
+            GrowToSmallPet();
+        }
+        // 50클릭 달성 시 성인펫으로 진화
+        else if (currentStage == PetStage.Small && currentClicks >= smallToAdultPetClicks)
+        {
+            GrowToAdultPet();
+        }
     }
 
     // 작은펫으로 성장하는 함수
