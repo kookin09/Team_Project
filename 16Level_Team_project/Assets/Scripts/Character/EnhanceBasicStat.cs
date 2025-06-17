@@ -29,18 +29,18 @@ public class EnhanceBasicStat : MonoBehaviour
             //1~100 maxLevelRange100 ,
             //101~200 maxLevelRange200,
             //201~300 maxLevelRange300
-            int minLevelRange = (100 * i + 1);
-            int maxLevelRange = (i * 100 + 100);
+            int minLevelRange = (100 * i );
+            int maxLevelRange = (i * 100 + 99);
 
             //할필요가 있나? 아 해당 범위에 있을때에서 for문 break하면 되네
-            //예를 들면 500이야now레벨이 그러면 if문은 첫번쨰는 100~101이니까 통과를 안하겠지? 그리고 5번쨰 for문이 될때 if문 로직이 돌아가겠지?
+            //예를 들면 500이야now레벨이 그러면 if문은 첫번쨰는 1~100이니까 통과를 안하겠지? 그리고 5번쨰 for문이 될때 if문 로직이 돌아가겠지?
             if (nowLevel >= minLevelRange && nowLevel <= maxLevelRange)
             {
                 //딕셔너리에서 해당키값을 바탕으로 밸류를 불러오기 위해 i번째 코스트 티어배열에서 꺼내오고 
-                string nowCostTierStingKey = so.GetLevelCharTable()[i];
+                string nowCostTierStringKey = so.GetLevelCharTable()[i];
 
                 //꺼내온걸 바탕으로 딕셔너리에서 골드값을 계산해
-                BigInteger GoldCost = so.GetLevelCostTable()[$"{nowCostTierStingKey}"];
+                BigInteger GoldCost = so.GetLevelCostTable()[$"{nowCostTierStringKey}"];
 
                 //해당 i번째 딕셔너리에서 값을 꺼내오고 && 보유골드>= 소모 비용 일경우에만 강화가능 
                 //여기 소모값 계산 한김에 골드도 줄여 그냥 다 계산 여기서하고UI에서는 숨기자이게 ui랑 로직이랑 분리맞는거같음이렇게하는게
@@ -53,25 +53,26 @@ public class EnhanceBasicStat : MonoBehaviour
                     {
                         case "STR":
 
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowSTRUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicSTRLevel());
 
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowSTRUpgradeCost());
-
                             GameManager.Instance.player.SetBasicSTRLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicSTRLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowSTRUpgradeCost()},현재 골드:{nowGold}");
+
                             GameManager.Instance.player.SetBasicSTR(5);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicSTR());
                             GameManager.Instance.player.SetNowSTRUpgradeCost(GoldCost);
                             return true;
 
                         case "DEF":
-
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowDEFUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicDEFLevel());
-
+                            
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowDEFUpgradeCost());
-
                             GameManager.Instance.player.SetBasicDEFLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicDEFLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowDEFUpgradeCost()},현재 골드:{nowGold}");
+
                             GameManager.Instance.player.SetBasicDEF(5);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicDEF());
                             GameManager.Instance.player.SetNowDEFUpgradeCost(GoldCost);
@@ -81,13 +82,14 @@ public class EnhanceBasicStat : MonoBehaviour
 
                         case "HP":
 
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowHPUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicHPLevel());
-
 
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowHPUpgradeCost());
-
                             GameManager.Instance.player.SetBasicHPLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicHPLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowHPUpgradeCost()},현재 골드:{nowGold}");
+
+
                             GameManager.Instance.player.SetBasicHP(50);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicHP());
                             GameManager.Instance.player.SetNowHPUpgradeCost(GoldCost);
@@ -97,13 +99,14 @@ public class EnhanceBasicStat : MonoBehaviour
 
                         case "CRT":
 
-                            Debug.Log($"현재 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowCRTUpgradeCost()},현재 골드:{nowGold}");
-                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicCRTLevel());
-
 
                             GameManager.Instance.player.SetBasicGold(GameManager.Instance.player.GetNowCRTUpgradeCost());
-
                             GameManager.Instance.player.SetBasicCRTLevel(1);
+
+                            Debug.Log($"현재 {statName} 레벨은:" + GameManager.Instance.player.GetBasicCRTLevel());
+                            Debug.Log($"소모 골드 범위는: {minLevelRange} ~ {maxLevelRange},소모골드:{GameManager.Instance.player.GetNowCRTUpgradeCost()},현재 골드:{nowGold}");
+
+
                             GameManager.Instance.player.SetBasicCRT(1);
                             Debug.Log("현재공격력" + GameManager.Instance.player.GetBasicCRT());
                             GameManager.Instance.player.SetNowCRTUpgradeCost(GoldCost);

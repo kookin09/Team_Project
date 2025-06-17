@@ -8,16 +8,21 @@ public class Enemy : MonoBehaviour
     private int monsterHP;
     private EnemySpawner spawner;
 
+    public UnityEngine.UI.Image healthBarFill; 
+
+    private int maxHp;
+    private int currentHp;
+
     public void Initialize(EnemySpawner enemySpawner, int stage)
     {
         spawner = enemySpawner;
         currentStage = stage;
     }
+
     void Start()
     {
         if (statsTable == null)
         {
-            Debug.LogError("statsTable이 설정되지 않았습니다!");
             return;
         }
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -28,34 +33,47 @@ public class Enemy : MonoBehaviour
         EnemyStageData data = statsTable.GetStatsForStage(currentStage);
         if (data != null)
         {
-            monsterHP = data.monsterHP;
+            maxHp = data.monsterHP;
+            currentHp = maxHp;
+            monsterHP = maxHp;
 
-            Debug.Log($"[Stage {currentStage}] {statsTable.enemyName} - HP: {monsterHP}");
-        }
-        else
-        {
-            Debug.LogWarning("해당 스테이지에 대한 적 데이터가 없습니다!");
+            UpdateHealthBar();
+
         }
     }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBarFill != null)
+            healthBarFill.fillAmount = (float)currentHp / maxHp;
+    }
+
+    private void Die()
+    {
+        EnemyStageData data = statsTable.GetStatsForStage(currentStage);
+        if (data != null)
+        {
+            StageManager.Instance.AddGold(data.goldReward);
+        }
+        spawner.OnEnemyDefeated();
+        Destroy(gameObject);
+    }
+
     private void OnMouseDown()
     {
-        Debug.Log("Clicked!");
         TakeDamage(1);
     }
 
     public void TakeDamage(int damage)
     {
-        monsterHP -= damage;
+        currentHp -= damage;
+        monsterHP = currentHp;
 
-        if (monsterHP <= 0)
+        if (currentHp <= 0)
         {
+            currentHp = 0;
             Die();
         }
-    }
-    private void Die()
-    {
-        Debug.Log($"[Stage {currentStage}] {statsTable.enemyName} 처치됨");
-        spawner.OnEnemyDefeated();
-        Destroy(gameObject);
+        UpdateHealthBar();
     }
 }

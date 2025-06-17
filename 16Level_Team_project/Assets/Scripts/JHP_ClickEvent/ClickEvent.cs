@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 /* 이 코드가 하는 일:
  * 1. 오브젝트를 마우스로 클릭하면 클릭 횟수가 증가합니다
  * 2. 화면에 현재 클릭 횟수를 표시합니다  
@@ -29,15 +30,18 @@ public class ClickEvent : MonoBehaviour
     // 이벤트를 듣는다는건 다른 스크립트가 이 이벤트가 발생했을 때 특정 함수를 실행하도록 하는 것입니다
 
     public int clickCount = 0;
-    public TextMeshProUGUI clickCountText;
+    public TMP_Text clickCountText;
+    public GameObject debrisParticlePrefab;
     public ParticleSystem debrisParticle;
     public bool autoAttackEnabled = false;
     public float autoAttackInterval = 1.0f;
     private Coroutine autoAttackCoroutine;
-    private Vector3 originalScale;
+    private UnityEngine.Vector3 originalScale;      //      Numerics와 Unity의 Vector3 가 충돌나 앞에 "UnityEngine" 을 붙였습니다
     public ParticleSystem criticalParticle;
+    public GameObject criticalParticlePrefab;
     public float criticalChance = 30f;
     public static event System.Action<bool> OnAttackPerformed;
+    public static event Action onMaxClicks; //"onMaxClicks" 이벤트는 클릭 횟수가 최대치에 도달했을 때 호출됩니다
 
     // 게임 시작 시 초기화 함수
     // 이 함수가 하는 일: 
@@ -46,9 +50,17 @@ public class ClickEvent : MonoBehaviour
     // 원래 크기를 저장해둡니다 (클릭 효과 후 되돌리기 위해)
     void Start()
     {
+        GameObject go = Instantiate(debrisParticlePrefab, transform.position, Quaternion.identity);
+        debrisParticle = go.GetComponent<ParticleSystem>();
+
+        go = Instantiate(criticalParticlePrefab, transform.position, Quaternion.identity);
+        criticalParticle = go.GetComponent<ParticleSystem>();
+
         originalScale = transform.localScale;  // 원래 크기 저장
         UpdateClickText();
 
+
+        Debug.Log("AutoAttack" + autoAttackEnabled);
         if (autoAttackEnabled)
         {
             StartAutoAttack();
@@ -59,6 +71,7 @@ public class ClickEvent : MonoBehaviour
     // 이 함수가 하는 일: 수동 클릭 공격을 실행합니다
     void OnMouseDown()
     {
+        Debug.Log("Enemy 클릭됨!");
         PerformAttack();
     }
 
@@ -72,30 +85,58 @@ public class ClickEvent : MonoBehaviour
     void PerformAttack()
     {
         clickCount++;
+        AttackMaximunCheck();
 
         // 치명타 판정 (0~100 사이 랜덤 숫자가 설정한 확률보다 작으면 치명타)
-        bool isCritical = Random.Range(0f, 100f) < criticalChance;
+        bool isCritical = UnityEngine.Random.Range(0f, 100f) < criticalChance;
+
+        // 클릭 시 골드 획득 기능 (1 STR 당 10 골드 획득)
+        //int str = GameManager.Instance.player.GetBasicSTR();
+        //BigInteger goldToAdd = str * 10;
 
         OnAttackPerformed?.Invoke(isCritical);
 
         if (isCritical)
         {
+            //goldToAdd *= 2;     //      치명타 시 골드 획득량 2배 기능
             Debug.Log("치명타!");
         }
+
+        //GameManager.Instance.player.CheatGoldMethod(goldToAdd);
+        //Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
 
 
         UpdateClickText();
         ClickEffect(isCritical); // 치명타 여부를 전달
     }
 
+    void AttackMaximunCheck()
+    {
+
+        if (clickCount == 10 || clickCount == 50)
+        {
+            onMaxClicks?.Invoke(); //"onMaxClicks 이벤트가 null이 아닐 때 실행한다"는 뜻입니다.
+        }
+        //?.는 NULL 이 아닐시 실행한다라는 뜻. 이벤트를 등록한다 라는 뜻
+        // 선언부에 Action 을 사용시 무조건 따라와야하는 Invoke()함수.
+    }
+
+
     // 화면 텍스트 업데이트 함수
     // 이 함수가 하는 일: TextMeshPro 텍스트가 연결되어 있는지 확인하고,
     // 연결되어 있다면 "Combo: 숫자" 형태로 텍스트를 업데이트합니다
     void UpdateClickText()
     {
-        if (clickCountText != null)
+        Transform canvasTransform = GameObject.Find("Canvas").transform;
+        TextMeshProUGUI text = canvasTransform.Find("Count").GetComponent<TextMeshProUGUI>();
+
+        if (text != null)
         {
-            clickCountText.text = "Combo: " + clickCount;
+            text.text = "Combo: " + clickCount;
+        }
+        else
+        {
+            Debug.Log("NULL입니다");
         }
     }
 
@@ -131,7 +172,6 @@ public class ClickEvent : MonoBehaviour
     void PlayDebrisEffect(bool isCritical = false)
     {
         ParticleSystem targetParticle;
-
         // 치명타 여부에 따라 사용할 파티클 선택
         if (isCritical && criticalParticle != null)
         {
@@ -146,6 +186,7 @@ public class ClickEvent : MonoBehaviour
         {
             targetParticle.transform.position = transform.position;
             targetParticle.Play();
+            Debug.Log("파티클");
         }
         else
         {

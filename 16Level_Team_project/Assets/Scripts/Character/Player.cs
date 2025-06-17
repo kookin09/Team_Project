@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>
 /// Get~() : 읽기전용함수,Set~() : 조건부 쓰기전용 함수
 /// </summary>
-public class Player 
+public class Player
 {
 
     public Player()
@@ -22,18 +22,18 @@ public class Player
     int basicDEF = 12;
     int basicHP = 100;
     float basicCRT = 0f;
-    
+
     BigInteger basicGold = new BigInteger(200000);
 
-    BigInteger nowSTRUpgradeCost = new BigInteger(0); 
-    BigInteger nowDEFUpgradeCost = new BigInteger(0); 
-    BigInteger nowHPUpgradeCost = new BigInteger(0); 
+    BigInteger nowSTRUpgradeCost = new BigInteger(0);
+    BigInteger nowDEFUpgradeCost = new BigInteger(0);
+    BigInteger nowHPUpgradeCost = new BigInteger(0);
     BigInteger nowCRTUpgradeCost = new BigInteger(0);
 
-    int basicSTRLevel = 1;
-    int basicDEFLevel = 1;
-    int basicHPLevel = 1;
-    int basicCRTLevel = 1;
+    int basicSTRLevel = 0;
+    int basicDEFLevel = 0;
+    int basicHPLevel = 0;
+    int basicCRTLevel = 0;
 
 
 
@@ -44,7 +44,12 @@ public class Player
     }
     public void SetNowSTRUpgradeCost(BigInteger accumulateCost)
     {
-        nowSTRUpgradeCost += accumulateCost;
+        if(accumulateCost > 0 && 0 <= nowSTRUpgradeCost)
+        {
+            nowSTRUpgradeCost += accumulateCost;
+
+        }
+        else { Debug.Log("공격력 스탯 누적 강화비용에서 오류 발생"); }
     }
     public BigInteger GetNowDEFUpgradeCost()
     {
@@ -52,7 +57,13 @@ public class Player
     }
     public void SetNowDEFUpgradeCost(BigInteger accumulateCost)
     {
-        nowDEFUpgradeCost += accumulateCost;
+
+        if (accumulateCost > 0 && 0 <= nowDEFUpgradeCost)
+        {
+            nowDEFUpgradeCost += accumulateCost;
+
+        }
+        else { Debug.Log("방어력 스탯 누적 강화비용에서 오류 발생"); }
     }
     public BigInteger GetNowHPUpgradeCost()
     {
@@ -60,7 +71,12 @@ public class Player
     }
     public void SetNowHPUpgradeCost(BigInteger accumulateCost)
     {
-        nowHPUpgradeCost += accumulateCost;
+        if (accumulateCost > 0 && 0 <= nowHPUpgradeCost)
+        {
+            nowHPUpgradeCost += accumulateCost;
+
+        }
+        else { Debug.Log("체력 스탯 누적 강화비용에서 오류 발생"); }
     }
     public BigInteger GetNowCRTUpgradeCost()
     {
@@ -68,7 +84,13 @@ public class Player
     }
     public void SetNowCRTUpgradeCost(BigInteger accumulateCost)
     {
-        nowCRTUpgradeCost += accumulateCost;
+
+        if (accumulateCost > 0 && 0 <= nowCRTUpgradeCost)
+        {
+            nowCRTUpgradeCost += accumulateCost;
+
+        }
+        else { Debug.Log("치명타 스탯 누적 강화비용에서 오류 발생"); }
     }
 
     public int GetBasicSTR()
@@ -122,7 +144,7 @@ public class Player
         //이걸 여기서 판정하면 안되네  100일때 조건이 만족하니까 105가 되는데
         //매니저에서 100넘어가면 다 100으로 판정하거나
         //버튼에 get으로 판정 해야할듯
-        if (basicCRT<=100 && basicGold >= nowCRTUpgradeCost)
+        if (basicCRT < 100 && basicGold >= nowCRTUpgradeCost)
         {
             basicCRT += BasicCRT;
         }
@@ -151,7 +173,13 @@ public class Player
     }
     public void SetBasicSTRLevel(int basicSTRLevel)
     {
-        this.basicSTRLevel += basicSTRLevel;
+
+        if (this.basicSTRLevel <= 999_999 && basicGold >= nowSTRUpgradeCost)
+        {
+            this.basicSTRLevel += basicSTRLevel;
+        }
+        else { Debug.Log("공격력 레벨 강화에서 오류발생"); }
+
     }
 
 
@@ -161,7 +189,12 @@ public class Player
     }
     public void SetBasicDEFLevel(int basicDEFLevel)
     {
-        this.basicDEFLevel += basicDEFLevel;
+
+        if (this.basicDEFLevel <= 999_999 && basicGold >= nowDEFUpgradeCost)
+        {
+            this.basicDEFLevel += basicDEFLevel;
+        }
+        else { Debug.Log("방어력 레벨 강화에서 오류발생"); }
     }
     public int GetBasicHPLevel()
     {
@@ -169,7 +202,11 @@ public class Player
     }
     public void SetBasicHPLevel(int basicHPLevel)
     {
-        this.basicHPLevel += basicHPLevel;
+        if (this.basicHPLevel <= 999_999 && basicGold >= nowHPUpgradeCost)
+        {
+            this.basicHPLevel += basicHPLevel;
+        }
+        else { Debug.Log("체력 레벨 강화에서 오류발생"); }
     }
     public int GetBasicCRTLevel()
     {
@@ -177,7 +214,13 @@ public class Player
     }
     public void SetBasicCRTLevel(int basicCRTLevel)
     {
-        this.basicCRTLevel += basicCRTLevel;
+
+
+        if (basicCRT < 100 && basicGold >= nowCRTUpgradeCost)
+        {
+            this.basicCRTLevel += basicCRTLevel;
+        }
+        else { Debug.Log("치명타 레벨 강화에서 오류발생"); }
     }
 
     /// <summary>
@@ -189,7 +232,7 @@ public class Player
         basicGold += Gold;
     }
 
-    
+
 
 
 }
