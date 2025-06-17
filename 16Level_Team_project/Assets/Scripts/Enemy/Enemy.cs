@@ -51,10 +51,6 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         EnemyStageData data = statsTable.GetStatsForStage(currentStage);
-        if (data != null)
-        {
-            StageManager.Instance.AddGold(data.goldReward);
-        }
         spawner.OnEnemyDefeated();
         Destroy(gameObject);
     }
