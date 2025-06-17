@@ -26,25 +26,31 @@ public class Coin : MonoBehaviour
     //float minY = 1.5f;
     public void DropCoin()
     {
-        ReadyToDestroy(2.7f, 0.4f, 1.5f, 2f, 1.5f);
-        Invoke("DestroyCoin", 1f);
+        //오브젝트 풀링에서 사용중인게 최기화전에 재호출되면 그 위치가 스폰 기준점이 되어버림 그래서 계속y위치가 올라감
+
+        ReadyToDestroy(3f, -3f, 3f, 1f, 3f);
+        Invoke("DestroyCoin", 3f);
     }
 
 
-    public void ReadyToDestroy(float ranX, float minZ,float maxZ,float duration,float maxHeight)
+    public void ReadyToDestroy(float ranX, float minY,float maxY,float duration,float maxHeight)
     {
 
 
-        Vector3 randomVector = new Vector3(Random.Range(-ranX, ranX), 0, Random.Range(minZ, maxZ));
+        //Vector2 randomVector = new Vector2(Random.Range(-ranX, ranX),  Random.Range(minY, maxY));
 
 
-        Vector3 d1 = transform.position;
-        Vector3 d2 = randomVector;
+        Vector2 d1 = new Vector2(0,0);
+        Vector2 randomVector = new Vector2(Random.Range(-ranX, ranX), Random.Range(minY, maxY));
+
+        //Vector2 d2 = randomVector;
+        Vector2 d2 =d1+ randomVector;
+
 
         float distanceX = d2.x - d1.x;
-        float distanceZ = d2.z - d1.z;
+        float distanceY = d2.y - d1.y;
 
-        float distance = Mathf.Sqrt(distanceX * distanceX + distanceZ * distanceZ);
+        float distance = Mathf.Sqrt(distanceX * distanceX + distanceY * distanceY);
 
 
         StartCoroutine(MoveToEndPoint(d1,d2,maxHeight,duration));
@@ -54,9 +60,9 @@ public class Coin : MonoBehaviour
         
 
     }
-    IEnumerator MoveToEndPoint(Vector3 d1, Vector3 d2, float maxHeight, float duration)
+    IEnumerator MoveToEndPoint(Vector2 d1, Vector2 d2, float maxHeight, float duration)
     {
-
+        
         //accumulatedTime는 현재까지 진행된 시간값을계속 판정할 변수
 
         float accumulatedTime = 0f;
@@ -64,7 +70,7 @@ public class Coin : MonoBehaviour
         while (accumulatedTime < duration)
         {
             float t = accumulatedTime / duration;
-            Vector3 lerpMid = Vector3.Lerp(d1, d2, t);
+            Vector2 lerpMid = Vector2.Lerp(d1, d2, t);
 
             lerpMid.y += 4 * maxHeight * t * (1 - t);
 
@@ -74,9 +80,15 @@ public class Coin : MonoBehaviour
 
             yield return null;
 
-        }
 
+
+        }
         transform.position = d2;
+
+        //yield return new WaitForSeconds(3f);
+        
+
+       
     }
 
     public void DestroyCoin()

@@ -46,8 +46,11 @@ public class DropTheCoin : MonoBehaviour
     public void ButtonPool()
     {
         var coin = pool.Get();
+
         coin.DropCoin();
     }
+
+    
 
     //Create
     Coin DropCoin()
