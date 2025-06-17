@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 public class DropTheCoin : MonoBehaviour
 {
 
@@ -10,6 +9,18 @@ public class DropTheCoin : MonoBehaviour
     GameObject coinPreFab;
 
     IObjectPool<Coin> pool;
+
+    //float minX = -2.7f;
+    //float maxX = 2.7f;
+
+    //float minY = 0.4f;
+    //float minY = 1.5f;
+
+    [SerializeField]
+    Transform startPosition; //x-2.7~2.7 y-0.4~1.5
+
+    [SerializeField]
+    Transform endPosition;
 
 
     void Awake()
@@ -19,16 +30,22 @@ public class DropTheCoin : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetMouseButton(0))
-        //{
+        
+    }
 
-        //}
+    void LateUpdate()
+    {
+        
+    }
+
+    void CalLerpPosition()
+    {
+
     }
 
     public void ButtonPool()
     {
         var coin = pool.Get();
-
         coin.DropCoin();
     }
 
@@ -37,6 +54,7 @@ public class DropTheCoin : MonoBehaviour
     {
         Coin coinTouch = Instantiate(coinPreFab).GetComponent<Coin>();
         coinTouch.SetManagedPool(pool);
+
         return coinTouch;
     }
 
