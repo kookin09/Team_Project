@@ -8,5 +8,4 @@ public class EnemyStageData
 {
     public int stage;
     public int monsterHP;
-    public int goldReward;
 }
