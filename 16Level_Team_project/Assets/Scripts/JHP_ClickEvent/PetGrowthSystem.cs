@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /* 이 코드가 하는 일:
  * 1. 클릭 수에 따라 펫이 성장합니다 (알 → 작은펫 → 성인펫)
@@ -70,21 +71,6 @@ public class PetGrowthSystem : MonoBehaviour
     // 게임 시작할 때 실행되는 함수
     void Start()
     {
-        // ClickEvent 스크립트 찾기
-        clickEvent = FindObjectOfType<ClickEvent>();
-
-        // ClickEvent를 못 찾으면 경고 메시지 출력
-        if (clickEvent == null)
-        {
-            Debug.LogWarning("ClickEvent 스크립트를 찾을 수 없습니다!");
-        }
-        else
-        {
-            // ClickEvent를 찾았다면 자동클릭을 비활성화 상태로 설정
-            clickEvent.autoAttackEnabled = false;
-            Debug.Log("자동클릭이 비활성화되었습니다. (성인펫이 될 때까지 대기)");
-        }
-
         // 펫 이미지가 연결되지 않았으면 경고 메시지 출력
         if (petImage == null)
         {
@@ -138,6 +124,41 @@ public class PetGrowthSystem : MonoBehaviour
             GrowToSmallPet();
         }
         // 작은펫에서 성인펫으로 성장 확인
+        else if (currentStage == PetStage.Small && currentClicks >= smallToAdultPetClicks)
+        {
+            GrowToAdultPet();
+        }
+    }
+
+    private void OnEnable()
+    {
+        ClickEvent.onMaxClicks += HandleMaxClicksEvolution;  // 하나의 함수로 모든 진화 처리
+    }
+
+    private void OnDisable()
+    {
+        ClickEvent.onMaxClicks -= HandleMaxClicksEvolution;  // 하나의 함수로 모든 진화 처리
+    }
+
+    // 최대 클릭 이벤트가 발생했을 때 진화를 처리하는 함수 (새로 추가!)
+    private void HandleMaxClicksEvolution()
+    {
+        // ClickEvent 참조 찾기
+        if (clickEvent == null)
+        {
+            clickEvent = FindObjectOfType<ClickEvent>();
+        }
+
+        if (clickEvent == null) return;
+
+        int currentClicks = clickEvent.clickCount;
+
+        // 10클릭 달성 시 작은펫으로 진화
+        if (currentStage == PetStage.Egg && currentClicks >= eggToSmallPetClicks)
+        {
+            GrowToSmallPet();
+        }
+        // 50클릭 달성 시 성인펫으로 진화
         else if (currentStage == PetStage.Small && currentClicks >= smallToAdultPetClicks)
         {
             GrowToAdultPet();

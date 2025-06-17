@@ -16,12 +16,17 @@ MonoBehaviour:
   enemySprite: {fileID: 21300000, guid: 010fda6117a6ac640beb64267cbb65b0, type: 3}
   stageStats:
   - stage: 1
-    monsterHP: 15
+    monsterHP: 8
+    goldReward: 70
   - stage: 2
-    monsterHP: 40
-  - stage: 3
     monsterHP: 90
+    goldReward: 350
+  - stage: 3
+    monsterHP: 230
+    goldReward: 1750
   - stage: 4
-    monsterHP: 170
+    monsterHP: 750
+    goldReward: 8750
   - stage: 5
-    monsterHP: 400
+    monsterHP: 3000
+    goldReward: 43750
