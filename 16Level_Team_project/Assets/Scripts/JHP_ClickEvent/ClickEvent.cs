@@ -91,18 +91,18 @@ public class ClickEvent : MonoBehaviour
         bool isCritical = UnityEngine.Random.Range(0f, 100f) < criticalChance;
 
         // 클릭 시 골드 획득 기능 (1 STR 당 10 골드 획득)
-        //int str = GameManager.Instance.player.GetBasicSTR();
-        //BigInteger goldToAdd = str * 10;
+        int str = GameManager.Instance.player.GetBasicSTR();
+        System.Numerics.BigInteger goldToAdd = str * 10;
 
         OnAttackPerformed?.Invoke(isCritical);
 
         if (isCritical)
         {
-            //goldToAdd *= 2;     //      치명타 시 골드 획득량 2배 기능
+            goldToAdd *= 2;     //      치명타 시 골드 획득량 2배 기능
             Debug.Log("치명타!");
         }
 
-        //GameManager.Instance.player.CheatGoldMethod(goldToAdd);
+        GameManager.Instance.player.CheatGoldMethod(goldToAdd);
         //Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
 
 
