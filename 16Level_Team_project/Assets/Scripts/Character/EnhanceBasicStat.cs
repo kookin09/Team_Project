@@ -7,8 +7,20 @@ using UnityEngine;
 
 public class EnhanceBasicStat : MonoBehaviour
 {
+    [SerializeField] private GameObject noGoldWarning;
+
     [SerializeField]
     SOPlayerStat so;
+
+    private void Start()
+    {
+        StartCoroutine(TestCoroutine());
+    }
+    private IEnumerator TestCoroutine()
+    {
+        Debug.Log("🧪 코루틴 실행 테스트 성공!");
+        yield return null;
+    }
 
     //public  BigInteger =
 
@@ -117,6 +129,11 @@ public class EnhanceBasicStat : MonoBehaviour
                             return false;
                     }
                 }
+                else
+                {
+                    StartCoroutine(ShowNoGoldWarning());
+                    return false;
+                }
             }
         }
 
@@ -125,6 +142,21 @@ public class EnhanceBasicStat : MonoBehaviour
         return false;
 
 
+    }
+
+    private IEnumerator ShowNoGoldWarning()
+    {
+        Debug.Log("showNoGoldWarning 실행됨");
+
+        if (noGoldWarning == null)
+        {
+            Debug.LogWarning("noGoldWarning 오브젝트가 연결되지 않음");
+            yield break;
+        }
+
+        noGoldWarning.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        noGoldWarning.SetActive(false);
     }
 
 
