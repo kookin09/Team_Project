@@ -9,6 +9,8 @@ public class StageManager : MonoBehaviour
     public int currentStage = 1;
     public int enemiesKilled = 0;
     public int enemiesToKill = 5;
+    public int currentGold = 0;
+    public int maxClearedStage = 1;
 
     public EnemySpawner enemySpawner;
     public StageUIManager stageUiManager;
@@ -33,16 +35,51 @@ public class StageManager : MonoBehaviour
     public void OnEnemyKilled()
     {
         enemiesKilled++;
-        stageUiManager.UpdateKillCountUI(enemiesKilled,enemiesToKill);
+        stageUiManager.UpdateKillCountUI(enemiesKilled, enemiesToKill);
 
-        if(enemiesKilled >= enemiesToKill)
+        if (enemiesKilled >= enemiesToKill)
         {
+            if (maxClearedStage < currentStage + 1)
+            {
+                maxClearedStage = currentStage + 1;
+            }
+
             currentStage++;
             enemiesKilled = 0;
 
             stageUiManager.UpdateStageUI(currentStage);
             stageUiManager.UpdateKillCountUI(enemiesKilled, enemiesToKill);
         }
+
         enemySpawner.SpawnEnemy();
+    }
+    public void AddGold(int amount)
+    {
+        currentGold += amount;
+        stageUiManager.UpdateGoldUI(currentGold);
+    }
+    public void GoToPreviousStage()
+    {
+        if (currentStage > 1)
+        {
+            currentStage--;
+            enemiesKilled = 0;
+            stageUiManager.UpdateStageUI(currentStage);
+            stageUiManager.UpdateKillCountUI(enemiesKilled, enemiesToKill);
+            enemySpawner.ForceRespawnEnemy();
+        }
+    }
+
+    public void GoToNextStage()
+    {
+        if (currentStage + 1 <= maxClearedStage && currentStage < 5)
+        {
+            currentStage++;
+            enemiesKilled = 0;
+
+            stageUiManager.UpdateStageUI(currentStage);
+            stageUiManager.UpdateKillCountUI(enemiesKilled, enemiesToKill);
+            enemySpawner.ForceRespawnEnemy();
+        }
     }
 }

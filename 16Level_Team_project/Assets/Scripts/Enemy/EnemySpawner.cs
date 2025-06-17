@@ -27,4 +27,14 @@ public class EnemySpawner : MonoBehaviour
         currentEnemy = null;
         StageManager.Instance.OnEnemyKilled();
     }
+    public void ForceRespawnEnemy()
+    {
+        if (currentEnemy != null)
+        {
+            Destroy(currentEnemy);
+            currentEnemy = null;
+        }
+
+        SpawnEnemy();
+    }
 }

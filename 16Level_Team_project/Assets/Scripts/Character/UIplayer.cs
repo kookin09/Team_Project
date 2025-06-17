@@ -151,6 +151,7 @@ public class UIPlayer : MonoBehaviour
         {
             UpgradeCRT();
         }
+
     }
 
     public void UpgradeSTR()
@@ -199,12 +200,12 @@ public class UIPlayer : MonoBehaviour
         //float calCRT = player.SetBasicCRT(5);
 
         float result = maxCRT + addCRT;
-        if (player.GetBasicGold() >= player.GetNowCRTUpgradeCost() && result < 100)
+        if (player.GetBasicGold() >= player.GetNowCRTUpgradeCost() && result <= 100)
         {
             if (enhance.EnhancePlayerBsaicStat("CRT", out BigInteger costCoin))
             {
                 Debug.Log("강화성공");
-                CRTCoinValue.text = CalGoldOutPut(costCoin);
+                CRTCoinValue.text = CalGoldOutPut(GameManager.Instance.player.GetNowCRTUpgradeCost());
             }
             else
             {
