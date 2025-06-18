@@ -9,7 +9,6 @@ public class StageManager : MonoBehaviour
     public int currentStage = 1;
     public int enemiesKilled = 0;
     public int enemiesToKill = 5;
-    public int currentGold = 0;
     public int maxClearedStage = 1;
 
     public EnemySpawner enemySpawner;
@@ -52,11 +51,6 @@ public class StageManager : MonoBehaviour
         }
 
         enemySpawner.SpawnEnemy();
-    }
-    public void AddGold(int amount)
-    {
-        currentGold += amount;
-        stageUiManager.UpdateGoldUI(currentGold);
     }
     public void GoToPreviousStage()
     {

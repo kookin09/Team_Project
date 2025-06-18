@@ -158,9 +158,6 @@ public class StarrySpaceBackground : MonoBehaviour
         // Image 컴포넌트 추가
         UnityEngine.UI.Image starImage = star.AddComponent<UnityEngine.UI.Image>();
 
-        // Raycast Target 끄기
-        starImage.raycastTarget = false;
-
         // 별 크기 설정
         RectTransform rect = star.GetComponent<RectTransform>();
         float size = Random.Range(starSizeMin, starSizeMax);
@@ -251,9 +248,6 @@ public class StarrySpaceBackground : MonoBehaviour
 
         // Image 컴포넌트 추가
         UnityEngine.UI.Image starImage = shootingStar.AddComponent<UnityEngine.UI.Image>();
-
-        // Raycast Target 끄기
-        starImage.raycastTarget = false;
 
         // 별똥별 크기 설정
         RectTransform rect = shootingStar.GetComponent<RectTransform>();

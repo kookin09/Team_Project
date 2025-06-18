@@ -5,7 +5,6 @@ public class StageUIManager : MonoBehaviour
 {
     public TextMeshProUGUI stageText;   
     public TextMeshProUGUI killCountText;
-    public TextMeshProUGUI goldText;
 
     public void UpdateStageUI(int stage)
     {
@@ -14,9 +13,5 @@ public class StageUIManager : MonoBehaviour
     public void UpdateKillCountUI(int killed, int required)
     {
         killCountText.text = killed + " / " + required;
-    }
-    public void UpdateGoldUI(int gold)
-    {
-        goldText.text = "Gold: " + gold;
     }
 }
