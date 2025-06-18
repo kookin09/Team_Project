@@ -9,7 +9,11 @@ using UnityEngine;
 /// </summary>
 public class Player
 {
-
+    UIPlayer uiPlayer;
+    public void SetUIPlayer(UIPlayer ui)
+    {
+        uiPlayer = ui;
+    }
     public Player()
     {
         Debug.Log("생성자 호출");
@@ -160,9 +164,17 @@ public class Player
     /// <param name="Gold"></param>
     public void SetBasicGold(BigInteger Gold)
     {
+        BigInteger before = basicGold;
+
         if (basicGold >= Gold)
         {
             basicGold -= Gold;
+
+            if(uiPlayer != null)
+            {
+                uiPlayer.AnimateGold(before, basicGold, 2f);
+            }
+            else { Debug.Log("player클래스uiplayer할당안됨"); }
         }
         else { Debug.Log("돈쓰기 오류 발생"); }
     }
@@ -229,8 +241,17 @@ public class Player
     /// <param name="Gold"></param>
     public void CheatGoldMethod(BigInteger Gold)
     {
+        BigInteger before = basicGold;
         basicGold += Gold;
+
+        if(uiPlayer != null)
+        {
+            uiPlayer.AnimateGold(before, basicGold, 2f);
+        }
+        else { Debug.Log("player클래스uiplayer할당안됨"); }
+
     }
+
 
 
 

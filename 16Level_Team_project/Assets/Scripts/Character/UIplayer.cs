@@ -56,7 +56,7 @@ public class UIPlayer : MonoBehaviour
     void Start()
     {
         player = GameManager.Instance.player;
-
+        GameManager.Instance.player.SetUIPlayer(this);
 
         StartSettingUI();
     }

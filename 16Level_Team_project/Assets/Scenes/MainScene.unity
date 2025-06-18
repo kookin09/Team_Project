@@ -14066,6 +14066,7 @@ MonoBehaviour:
     buffDuration: 0
     isDoubleGoldActive: 0
     playerName: 
+  coinDropper: {fileID: 0}
 --- !u!4 &1680296518
 Transform:
   m_ObjectHideFlags: 0
