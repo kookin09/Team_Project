@@ -12,8 +12,13 @@ public class Enemy : MonoBehaviour
 
     private int maxHp;
     private int currentHp;
+    private Player player;
+    public void SetPlayer(Player playerRef)
+    {
+        player = playerRef;
+    }
 
-    public void Initialize(EnemySpawner enemySpawner, int stage)
+    public void Initialize(EnemySpawner enemySpawner, int stage, Player playerRef)
     {
         spawner = enemySpawner;
         currentStage = stage;
@@ -63,7 +68,9 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        TakeDamage(1);
+        int playerDamage = GameManager.Instance.player.GetBasicSTR();  // ✅ 이걸로 변경
+        Debug.Log("플레이어 데미지: " + playerDamage);
+        TakeDamage(playerDamage);
     }
 
     public void TakeDamage(int damage)
