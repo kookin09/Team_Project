@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Numerics;
 using TMPro;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using DG.Tweening;
 
 
 public class UIPlayer : MonoBehaviour
@@ -123,7 +124,7 @@ public class UIPlayer : MonoBehaviour
         //CRTCoinValue.text =
 
     }
-
+    
     public void UpgradeSTR10()
     {
         for(int i = 0; i < 10; i++)
@@ -223,6 +224,7 @@ public class UIPlayer : MonoBehaviour
     {
 
         GameManager.Instance.player.CheatGoldMethod(999999999);
+
     }
     public void CheatGold2()
     {
@@ -231,10 +233,28 @@ public class UIPlayer : MonoBehaviour
     }
 
 
+    public TextMeshProUGUI outputgold;
 
+    public void AnimateGold(BigInteger from, BigInteger to, float duration)
+    {
+        double start = (double)from;
+        double end = (double)to;
+        double current = start;
 
+        DOTween.To(() => current, x => {
+            current = x;
+            BigInteger displayValue = new BigInteger(current);
+            ouputgold.text = CalGoldOutPut(displayValue); // TMP에 출력
+        }, end, duration).SetEase(Ease.Linear);
+    }
 
-
+    public void DOTweenCheatGold()
+    {
+        BigInteger beforeGold = GameManager.Instance.player.GetBasicGold();
+        GameManager.Instance.player.CheatGoldMethod(777777777);
+        BigInteger afterGold = GameManager.Instance.player.GetBasicGold();
+        AnimateGold(beforeGold, afterGold, 2f);
+    }
 }
 
 
