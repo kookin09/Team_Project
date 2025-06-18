@@ -1620,6 +1620,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 1
+--- !u!1 &213473482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213473484}
+  - component: {fileID: 213473483}
+  m_Layer: 0
+  m_Name: WaveEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &213473483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213473482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b1dcbf83a8631409c85afe3a91c470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableWaveDistortion: 1
+  waveStrength: 0.02
+  waveSpeed: 1
+  waveFrequency: 10
+  waveDirection: {x: 1, y: 0}
+  enableVerticalWave: 1
+  enableDiagonalWave: 0
+  secondaryWaveStrength: 0.01
+  secondaryWaveSpeed: 1.5
+  applicationMode: 0
+  targetCanvas: {fileID: 0}
+  targetCamera: {fileID: 0}
+--- !u!4 &213473484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213473482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &219142139
 GameObject:
   m_ObjectHideFlags: 0
@@ -12884,6 +12940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f318dfcecbfd3724da563cbc46ea1b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noGoldWarning: {fileID: 0}
   so: {fileID: 11400000, guid: e9dc5509e04de9e4599b3fa72cad9989, type: 2}
 --- !u!114 &1680296517
 MonoBehaviour:
@@ -14462,6 +14519,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886805980}
   m_CullTransparentMesh: 1
+--- !u!1 &1911202626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1911202628}
+  - component: {fileID: 1911202627}
+  m_Layer: 0
+  m_Name: StarryBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1911202627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911202626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f86de5e47ca57449a58417a7babfc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spaceColor: {r: 0.05, g: 0.05, b: 0.15, a: 1}
+  backgroundCanvas: {fileID: 0}
+  starCount: 100
+  starSizeMin: 2
+  starSizeMax: 6
+  starMoveSpeed: 10
+  twinkleSpeed: 2
+  starColor: {r: 1, g: 1, b: 1, a: 1}
+  shootingStarCount: 3
+  shootingStarSpeed: 200
+  shootingStarLifetime: 2
+  shootingStarSize: {x: 20, y: 4}
+  shootingStarGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  enableStarTrails: 1
+  enableColorVariation: 1
+  enablePulseEffect: 1
+--- !u!4 &1911202628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911202626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1936051241
 GameObject:
   m_ObjectHideFlags: 0
@@ -16824,3 +16970,5 @@ SceneRoots:
   - {fileID: 1607770876}
   - {fileID: 735995449}
   - {fileID: 1683921337}
+  - {fileID: 1911202628}
+  - {fileID: 213473484}
