@@ -133,59 +133,7 @@
 
 
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/d23abfc7-01dc-419d-9d7b-1e8bdcde3a6b" width="220"/><br/>
-      <p><b>메인 기능 진입 애니메이션</b><br/>UI 버튼 클릭 시 연출됩니다</p>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/826fa0eb-6a09-49c6-a9c9-fc31262ea309" width="220"/><br/>
-      <p><b>골드 획득 애니메이션</b><br/>DOTween으로 부드럽게 표시</p>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/da117c24-d0e9-4119-99f9-7ff376f9a799" width="220"/><br/>
-      <p><b>오브젝트 풀링</b><br/>코인 생성과 회수 과정입니다</p>
-    </td>
-  </tr>
-</table>
 
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/28d85e29-f871-44b9-a8ff-642ea259a863" style="width: 220px; max-height: 150px; object-fit: contain;" /><br/>
-      <p><b>펫 1</b><br/>
-        총 클릭횟수에 따라 펫이 진화를 합니다.<br/>
-        펫이 진화를 하면 플레이어를 도와 같이 공격해줍니다.
-      </p>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/5db026e0-ddbf-45d7-8bde-fa098d8dfd4e" style="width: 220px; max-height: 150px; object-fit: contain;" /><br/>
-      <p><b>귀여운펫을 진화시켜 보세요..! </b></p>
-    </td>
-  </tr>
-</table>
-
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/711a2a18-3e72-4e82-9e5f-aaef15bdd289" width="220"/><br/>
-      <p><b>스탯 업그레이드</b><br/>
-        몬스터와 전투하여 얻은 골드로<br/>
-        플레이어 스탯을 업그레이드합니다.
-      </p>
-    </td>
-    <td align="center">
-      <img src="https://github.com/user-attachments/assets/37baf81e-8ad4-42a2-91fc-51975e133eba" width="220"/><br/>
-      <p><b>무기 시스템</b><br/>
-        무기를 장착하거나<br/>
-        강화를 할 수 있습니다.
-      </p>
-    </td>
-  </tr>
-</table>
 
 
 
