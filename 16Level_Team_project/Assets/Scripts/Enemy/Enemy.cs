@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        int playerDamage = GameManager.Instance.player.GetBasicSTR();
+        int playerDamage = GameManager.Instance.player.GetFinalSTR();
         Debug.Log("플레이어 데미지: " + playerDamage);
         TakeDamage(playerDamage);
     }
