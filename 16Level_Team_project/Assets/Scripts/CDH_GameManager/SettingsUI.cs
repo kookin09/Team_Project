@@ -10,6 +10,7 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Toggle muteToggle; // 음소거 체크박스
 
     float lastValue;
     bool isMuted;
@@ -23,39 +24,71 @@ public class SettingsUI : MonoBehaviour
             volumeSlider.onValueChanged.AddListener(SetVolume);
         }
 
+        // 음소거 토글 연결
+        if (muteToggle != null)
+        {
+            muteToggle.onValueChanged.AddListener(OnMuteToggleChanged);
+        }
+
         // 볼륨 저장 불러오기 기능
         float savedVolume = PlayerPrefs.GetFloat("Volume", 1f);
         volumeSlider.value = savedVolume;
         SetVolume(savedVolume);
+
+        // 시작할 때는 음소거 해제 상태 (체크박스 해제)
+        isMuted = false;
+        muteToggle.isOn = false; // 체크박스 해제 = 소리 나옴
     }
 
-    // 이 함수 하나로 SetActive On/Off가 가능
     public void ToggleUI()
     {
         settingPanel.SetActive(!settingPanel.activeSelf);
-                                          // activeSelf는 settingPanel이 true인지 false인지 말해줌. 앞에 !(not) 을 붙여 true면 false로 바꿔줌
     }
 
     private void SetVolume(float value)
     {
-        // AudioMixer의 "MasterVolume" exposed parameter를 조절
+        // 볼륨 슬라이더를 움직이면 음소거 해제
+        if (isMuted && value > 0)
+        {
+            isMuted = false;
+
+            // 코루틴으로 다음 프레임에 UI 업데이트
+            StartCoroutine(UpdateMuteToggleNextFrame(false));
+
+            Debug.Log("볼륨 슬라이더 조작으로 음소거 해제됨");
+        }
+
         audioMixer.SetFloat("Volume", Mathf.Log10(value) * 20);
-        lastValue = value;   //      PlayerPrefs로 볼륨값 저장
+        lastValue = value;
     }
 
-    public void OnMuteToggle()
+    // 다음 프레임에 체크박스 업데이트하는 코루틴
+    private System.Collections.IEnumerator UpdateMuteToggleNextFrame(bool value)
     {
-        if (!isMuted)
-        {   // 음소거를 위한 코드. 매우 작은 값으로 설정해준다
+        yield return null; // 한 프레임 대기
+
+        if (muteToggle != null)
+        {
+            muteToggle.onValueChanged.RemoveListener(OnMuteToggleChanged);
+            muteToggle.isOn = value;
+            muteToggle.onValueChanged.AddListener(OnMuteToggleChanged);
+        }
+    }
+
+    // 체크박스가 변경될 때 호출되는 함수
+    private void OnMuteToggleChanged(bool isChecked)
+    {
+        isMuted = isChecked;
+
+        if (isChecked)
+        {
             audioMixer.SetFloat("Volume", -80f);
-            isMuted = true;     //      음소거 true 로 변경
+            Debug.Log("음소거 ON");
         }
         else
         {
-            // 음소거 하기 전 볼륨값으로 되돌려준다
             audioMixer.SetFloat("Volume", Mathf.Log10(lastValue) * 20);
-            isMuted= false;     //      음소거 false 로 변경
+            Debug.Log("음소거 OFF");
         }
     }
-
 }
