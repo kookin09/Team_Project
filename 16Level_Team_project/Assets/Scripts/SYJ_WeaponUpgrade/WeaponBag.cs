@@ -102,7 +102,7 @@ public class WeaponBag : MonoBehaviour
     }
 
     
-    public void OnclickUpgradeBtn()
+    public void OnclickUpgradeBtn() //강화버튼
     { 
         if (WeaponManager.Instance.Weapon.Inputweaponlv >= WeaponManager.Instance.Weapon.MaxLvweapon)
         {
