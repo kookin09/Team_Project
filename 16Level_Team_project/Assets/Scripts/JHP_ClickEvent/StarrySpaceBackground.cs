@@ -96,10 +96,10 @@ public class StarrySpaceBackground : MonoBehaviour
         }
 
         // 캔버스 찾기 또는 생성
-        if (backgroundCanvas == null)
-        {
-            backgroundCanvas = FindObjectOfType<Canvas>();
-        }
+        //if (backgroundCanvas == null)
+        //{
+        //    backgroundCanvas = FindObjectOfType<Canvas>();
+        //}
 
         if (backgroundCanvas != null)
         {
