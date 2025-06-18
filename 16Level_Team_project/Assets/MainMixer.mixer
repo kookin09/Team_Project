@@ -16,11 +16,11 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 4ea54079d44c9c3439628f065f1f9bc7
+  - guid: f663ae66426a5bf46899fec407abe404
     name: Volume
   m_AudioMixerGroupViews:
   - guids:
-    - c1b2e1ea38ca4964da736d0fb752231d
+    - a805d47abba459244a354abbdea313d6
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -32,10 +32,10 @@ AudioMixerGroupController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
-  m_GroupID: c1b2e1ea38ca4964da736d0fb752231d
+  m_GroupID: a805d47abba459244a354abbdea313d6
   m_Children: []
-  m_Volume: 4ea54079d44c9c3439628f065f1f9bc7
-  m_Pitch: 4e70aeb8e174e004a9b84bfbf3bc7406
+  m_Volume: f663ae66426a5bf46899fec407abe404
+  m_Pitch: 2b55a9d6120486f43a4aace4fed52da5
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
@@ -50,9 +50,9 @@ AudioMixerEffectController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_EffectID: e7871740766b14f429bda0cc0f4ec49d
+  m_EffectID: 5e08612a6cd99d04eb74463c7aa8da62
   m_EffectName: Attenuation
-  m_MixLevel: c0357e1e48bc26f419e0244ebc7cc46c
+  m_MixLevel: e40807ca31640ec48bd6dd407b86d2d7
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -65,35 +65,6 @@ AudioMixerSnapshotController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
-  m_SnapshotID: 6c3827fe1f9d5b74499172cc90ecc6eb
-  m_FloatValues:
-    4ea54079d44c9c3439628f065f1f9bc7: 0
+  m_SnapshotID: fcecda1b5b32e8f4c9922654f9b77233
+  m_FloatValues: {}
   m_TransitionOverrides: {}
---- !u!244 &1341442730727828212
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: baa259c69827db44f827d88e8d2b6515
-  m_EffectName: Duck Volume
-  m_MixLevel: 6bd9765b8ede6174787c2402d6239586
-  m_Parameters:
-  - m_ParameterName: Threshold
-    m_GUID: 05767b2206879544c9a6d85fc17d66db
-  - m_ParameterName: Ratio
-    m_GUID: 7edce397e3ca94f41a30754f13885a1a
-  - m_ParameterName: Attack Time
-    m_GUID: dba1c0367aa4aa444a25a6e4fe4bc929
-  - m_ParameterName: Release Time
-    m_GUID: 149a43905e26662419ccd4b18c3fcaee
-  - m_ParameterName: Make-up Gain
-    m_GUID: e3a3d8d902c967744baf290078c60c19
-  - m_ParameterName: Knee
-    m_GUID: c0b9632dfcb6f3d4e9ca0a73da1ed9fa
-  - m_ParameterName: Sidechain Mix
-    m_GUID: bb3cec8f98bb74e44a138d3a7cf028ec
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0

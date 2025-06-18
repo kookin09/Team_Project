@@ -27,6 +27,7 @@ public class Player
     int basicHP = 100;
     float basicCRT = 0f;
 
+
     BigInteger basicGold = new BigInteger(200000);
 
     BigInteger nowSTRUpgradeCost = new BigInteger(0);
@@ -39,6 +40,19 @@ public class Player
     int basicHPLevel = 0;
     int basicCRTLevel = 0;
 
+    public int GetFinalSTR()
+    {
+        Weapon weapon = WeaponManager.Instance?.Weapon;
+        int weaponPower = weapon != null ? weapon.Powerweapon : 0;
+        return basicSTR + weaponPower;
+    }
+
+    public float GetFinalCritChance()
+    {
+        Weapon weapon = WeaponManager.Instance?.Weapon;
+        float weaponCrit = weapon != null ? (float)weapon.critChance : 0f;
+        return basicCRT + weaponCrit;
+    }
 
 
 

@@ -107,10 +107,10 @@ public class UIPlayer : MonoBehaviour
     void UpdateUI()
     {
         //현재 공격력
-        curSTR.text = $"Now STR :{GameManager.Instance.player.GetBasicSTR()}";
-        curDEF.text = $"Now DEF :{GameManager.Instance.player.GetBasicDEF()}";
-        curHP.text = $"Now HP :{GameManager.Instance.player.GetBasicHP()}";
-        curCRT.text = $"Now CRT :{GameManager.Instance.player.GetBasicCRT()}";
+        curSTR.text = $"Now STR: {GameManager.Instance.player.GetBasicSTR()}";
+        curDEF.text = $"Now DEF: {GameManager.Instance.player.GetBasicDEF()}";
+        curHP.text = $"Now HP: {GameManager.Instance.player.GetBasicHP()}";
+        curCRT.text = $"Now CRT: {GameManager.Instance.player.GetBasicCRT()}%";
         //골드
         ouputgold.text = CalGoldOutPut(GameManager.Instance.player.GetBasicGold());
 
