@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public List<EnemyStatsTable> enemyPools;
     public GameObject enemyPrefab;
     public Transform spawnPoints;
+    public Player player;
 
     private GameObject currentEnemy;
 
@@ -19,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
             currentEnemy = Instantiate(enemyPrefab, spawnPoints.position, Quaternion.identity);
             Enemy enemy = currentEnemy.GetComponent<Enemy>();
             enemy.statsTable = randomStatsTable;
-            enemy.Initialize(this, StageManager.Instance.currentStage);
+            enemy.Initialize(this, StageManager.Instance.currentStage, player);
         }
     }
     public void OnEnemyDefeated()
