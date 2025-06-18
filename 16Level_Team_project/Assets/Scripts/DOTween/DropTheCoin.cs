@@ -43,7 +43,7 @@ public class DropTheCoin : MonoBehaviour
 
     }
 
-    public void ButtonPool()
+    public void DropCoinPool()
     {
         var coin = pool.Get();
 
@@ -65,6 +65,7 @@ public class DropTheCoin : MonoBehaviour
     void OnGetCoin(Coin coinTouch)
     {
         coinTouch.gameObject.SetActive(true);
+        coinTouch.SetTarget(endPosition);
     }
 
     void OnReleaseCoin(Coin coinTouch)

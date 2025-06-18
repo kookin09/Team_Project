@@ -53,6 +53,12 @@ public class Enemy : MonoBehaviour
         EnemyStageData data = statsTable.GetStatsForStage(currentStage);
         spawner.OnEnemyDefeated();
         Destroy(gameObject);
+        
+        for(int i = 0; i < 7; i++)
+        {
+            GameManager.Instance.coinDropper.DropCoinPool();
+
+        }
     }
 
     private void OnMouseDown()

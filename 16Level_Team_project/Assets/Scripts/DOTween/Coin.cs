@@ -17,7 +17,10 @@ public class Coin : MonoBehaviour
     {
         coinPool = pool;
     }
-
+    public void SetTarget(Transform targetTransform)
+    {
+        target = targetTransform;
+    }
 
     //float minX = -2.7f;
     //float maxX = 2.7f;
@@ -32,12 +35,11 @@ public class Coin : MonoBehaviour
 
     IEnumerator DropSequence()
     {
-        yield return StartCoroutine(ReadyToDestroy(3f, -3f, 1.5f, 4f, 3f));
+        yield return StartCoroutine(ReadyToDestroy(3f, -3f, 1.5f, 2f, 3f));
         yield return new WaitForSeconds(2f);
 
-        yield return StartCoroutine(ReadyToGetCoin(target, 3f, 3f));
+        yield return StartCoroutine(ReadyToGetCoin(target, 2f, 0.1f));
 
-        yield return new WaitForSeconds(1f);
 
         uiplayer.DOTweenCheatGold();
         DestroyCoin();
