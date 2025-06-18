@@ -13716,6 +13716,7 @@ MonoBehaviour:
   settingPanel: {fileID: 1645308497}
   volumeSlider: {fileID: 1992263701}
   audioMixer: {fileID: 24100000, guid: 123f6a8196bb9ef438be6ba6c68d2c69, type: 2}
+  muteToggle: {fileID: 444916228}
 --- !u!4 &1645308499
 Transform:
   m_ObjectHideFlags: 0
