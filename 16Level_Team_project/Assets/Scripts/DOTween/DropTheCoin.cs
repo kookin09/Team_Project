@@ -59,6 +59,7 @@ public class DropTheCoin : MonoBehaviour
         coinTouch.SetManagedPool(pool);
 
         return coinTouch;
+
     }
 
     void OnGetCoin(Coin coinTouch)
