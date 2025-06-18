@@ -103,7 +103,6 @@ public class ClickEvent : MonoBehaviour
         }
 
         GameManager.Instance.player.CheatGoldMethod(goldToAdd);
-        //Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
 
 
         UpdateClickText();
