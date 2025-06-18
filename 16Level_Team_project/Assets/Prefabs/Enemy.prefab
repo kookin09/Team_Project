@@ -189,8 +189,8 @@ GameObject:
   - component: {fileID: 5361661860894606139}
   - component: {fileID: 978498071393781447}
   - component: {fileID: 5705265853975925781}
-  - component: {fileID: 5821926284771046716}
   - component: {fileID: 1633218456120177524}
+  - component: {fileID: 6155294646597131197}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -281,27 +281,6 @@ MonoBehaviour:
   statsTable: {fileID: 11400000, guid: f2a97e5eb397bb34f8729e7ce61af6c4, type: 2}
   currentStage: 1
   healthBarFill: {fileID: 6500769964928986273}
---- !u!65 &5821926284771046716
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7793547832673058468}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1633218456120177524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +302,51 @@ MonoBehaviour:
   criticalParticle: {fileID: 4306137567152930796, guid: 8d1f0450a35f1d74a909c9d449a19aac, type: 3}
   criticalParticlePrefab: {fileID: 6075960359339034960, guid: 8d1f0450a35f1d74a909c9d449a19aac, type: 3}
   criticalChance: 30
+--- !u!61 &6155294646597131197
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793547832673058468}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.28, y: 1.28}
+  m_EdgeRadius: 0
 --- !u!1 &8687147150000130308
 GameObject:
   m_ObjectHideFlags: 0
