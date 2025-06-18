@@ -8598,6 +8598,7 @@ GameObject:
   - component: {fileID: 1680296518}
   - component: {fileID: 1680296517}
   - component: {fileID: 1680296516}
+  - component: {fileID: 1680296519}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8650,7 +8651,7 @@ MonoBehaviour:
     buffDuration: 0
     isDoubleGoldActive: 0
     playerName: 
-  coinDropper: {fileID: 0}
+  coinDropper: {fileID: 1680296519}
 --- !u!4 &1680296518
 Transform:
   m_ObjectHideFlags: 0
@@ -8666,6 +8667,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1680296519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680296515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678f5baa49f233c438114681388a2985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPreFab: {fileID: 3620302830568741229, guid: f3cd0b623166ad84ba1cbbf5198f8fba, type: 3}
+  startPosition: {fileID: 0}
+  endPosition: {fileID: 432569754}
 --- !u!1 &1683824979
 GameObject:
   m_ObjectHideFlags: 0
