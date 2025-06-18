@@ -43,6 +43,8 @@ public class ClickEvent : MonoBehaviour
     public static event System.Action<bool> OnAttackPerformed;
     public static event Action onMaxClicks; //"onMaxClicks" 이벤트는 클릭 횟수가 최대치에 도달했을 때 호출됩니다
 
+
+
     // 게임 시작 시 초기화 함수
     // 이 함수가 하는 일: 
     // 게임이 시작되자마자 화면에 "Combo: 0" 같은 초기 텍스트를 표시합니다
@@ -91,7 +93,7 @@ public class ClickEvent : MonoBehaviour
         bool isCritical = UnityEngine.Random.Range(0f, 100f) < criticalChance;
 
         // 클릭 시 골드 획득 기능 (1 STR 당 10 골드 획득)
-        int str = GameManager.Instance.player.GetBasicSTR();
+        int str = GameManager.Instance.player.GetFinalSTR();
         System.Numerics.BigInteger goldToAdd = str * 10;
 
         OnAttackPerformed?.Invoke(isCritical);
