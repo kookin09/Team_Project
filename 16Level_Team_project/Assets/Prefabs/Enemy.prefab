@@ -316,12 +316,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickCount: 0
   clickCountText: {fileID: 7216679950950036196, guid: 7685ca5f991acbf4bbd9b7a4f975621d, type: 3}
-  debrisParticlePrefab: {fileID: 0}
+  debrisParticlePrefab: {fileID: 4185113965615612456, guid: cd2b6ed008f200945baa396b6c71db5d, type: 3}
   debrisParticle: {fileID: 512616184684410301, guid: cd2b6ed008f200945baa396b6c71db5d, type: 3}
-  autoAttackEnabled: 1
+  autoAttackEnabled: 0
   autoAttackInterval: 1
   criticalParticle: {fileID: 4306137567152930796, guid: 8d1f0450a35f1d74a909c9d449a19aac, type: 3}
-  criticalParticlePrefab: {fileID: 0}
+  criticalParticlePrefab: {fileID: 6075960359339034960, guid: 8d1f0450a35f1d74a909c9d449a19aac, type: 3}
   criticalChance: 30
 --- !u!1 &8687147150000130308
 GameObject:

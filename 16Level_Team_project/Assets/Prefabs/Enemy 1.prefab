@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickCount: 0
-  clickCountText: {fileID: 0}
+  clickCountText: {fileID: 7216679950950036196, guid: 7685ca5f991acbf4bbd9b7a4f975621d, type: 3}
   debrisParticlePrefab: {fileID: 4185113965615612456, guid: cd2b6ed008f200945baa396b6c71db5d, type: 3}
   debrisParticle: {fileID: 512616184684410301, guid: cd2b6ed008f200945baa396b6c71db5d, type: 3}
   autoAttackEnabled: 0
