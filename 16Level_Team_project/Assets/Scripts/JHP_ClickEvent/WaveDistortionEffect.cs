@@ -121,6 +121,9 @@ public class WaveDistortionEffect : MonoBehaviour
         // RawImage 컴포넌트 추가
         waveImage = waveOverlay.AddComponent<RawImage>();
 
+        //Raycast Target 끄기
+        waveImage.raycastTarget = false;
+
         // 전체 화면 크기로 설정
         RectTransform rect = waveOverlay.GetComponent<RectTransform>();
         rect.anchorMin = Vector2.zero;

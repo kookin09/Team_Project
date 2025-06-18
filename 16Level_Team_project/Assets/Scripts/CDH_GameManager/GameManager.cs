@@ -34,6 +34,37 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void UpgradeCriticalStat()
+    {
+        var player = GameManager.Instance.player;
+
+        BigInteger upgradeCost = player.GetNowCRTUpgradeCost();
+
+        if (player.GetBasicGold() >= upgradeCost)
+        {
+            // 골드 차감
+            player.SetBasicGold(upgradeCost);
+
+            // 레벨 증가
+            player.SetBasicCRTLevel(1);
+
+            // 확률 증가 1% = 0.01f
+            player.SetBasicCRT(0.01f);
+
+            // 누적 강화 비용 증가
+            player.SetNowCRTUpgradeCost(upgradeCost);
+
+            // ClickEvent.cs에 최신 확률 전달
+            FindObjectOfType<ClickEvent>().UpdateCriticalChance(player.GetBasicCRT());
+
+            Debug.Log($"치명타 레벨: {player.GetBasicCRTLevel()} / 확률: {player.GetBasicCRT() * 100}%");
+        }
+        else
+        {
+            Debug.Log("치명타 강화에 필요한 골드가 부족합니다!");
+        }
+    }
+
 
 
     // 게임 시작 시 저장된 데이터로 Player cs 설정

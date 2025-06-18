@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System;
 /* 이 코드가 하는 일:
  * 1. 오브젝트를 마우스로 클릭하면 클릭 횟수가 증가합니다
  * 2. 화면에 현재 클릭 횟수를 표시합니다  
@@ -71,6 +72,10 @@ public class ClickEvent : MonoBehaviour
     // 이 함수가 하는 일: 수동 클릭 공격을 실행합니다
     void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         Debug.Log("Enemy 클릭됨!");
         PerformAttack();
     }
@@ -103,7 +108,6 @@ public class ClickEvent : MonoBehaviour
         }
 
         GameManager.Instance.player.CheatGoldMethod(goldToAdd);
-        //Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
 
 
         UpdateClickText();

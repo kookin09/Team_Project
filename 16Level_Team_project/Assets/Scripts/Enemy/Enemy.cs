@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Enemy : MonoBehaviour
     private int monsterHP;
     private EnemySpawner spawner;
 
-    public UnityEngine.UI.Image healthBarFill; 
+    public UnityEngine.UI.Image healthBarFill;
 
     private int maxHp;
     private int currentHp;
@@ -57,6 +58,10 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         TakeDamage(1);
     }
 
