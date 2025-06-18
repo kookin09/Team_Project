@@ -98,11 +98,16 @@ public class ClickEvent : MonoBehaviour
 
         if (isCritical)
         {
-            goldToAdd *= 2;     //      치명타 시 골드 획득량 2배 기능
-            Debug.Log("치명타!");
+            float multiplier = GameManager.Instance.player.GetCritDamageMultiplier();
+            double result = (double)goldToAdd * multiplier;
+            goldToAdd = new System.Numerics.BigInteger(result);
+
+            Debug.Log($" 치명타 배율 적용됨! x{multiplier}, 최종 골드: {goldToAdd}");
         }
 
+
         GameManager.Instance.player.CheatGoldMethod(goldToAdd);
+        //Debug.Log($"[Click] STR: {str} > 골드 + {goldToAdd} {(isCritical ? "(치명타!)" : "")}");
 
 
         UpdateClickText();

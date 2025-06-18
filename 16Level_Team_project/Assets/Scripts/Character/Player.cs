@@ -22,6 +22,7 @@ public class Player
     int basicDEF = 12;
     int basicHP = 100;
     float basicCRT = 0f;
+    float critDamageMultiplier = 2f;
 
     BigInteger basicGold = new BigInteger(200000);
 
@@ -36,7 +37,17 @@ public class Player
     int basicCRTLevel = 0;
 
 
-
+    public float GetCritDamageMultiplier()
+    {
+        return critDamageMultiplier;
+    }
+    public void AddCritDamageMultiplier(float value)
+    {
+        if (value > 0)
+            critDamageMultiplier += value;
+        else
+            Debug.Log("치명타 데미지 증가값 오류");
+    }
 
     public BigInteger GetNowSTRUpgradeCost()
     {

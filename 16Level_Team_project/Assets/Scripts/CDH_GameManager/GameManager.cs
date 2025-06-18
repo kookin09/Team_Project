@@ -64,7 +64,22 @@ public class GameManager : MonoBehaviour
             Debug.Log("치명타 강화에 필요한 골드가 부족합니다!");
         }
     }
+    public void UpgradeCriticalDamage()
+    {
+        var player = GameManager.Instance.player;
+        BigInteger cost = new BigInteger(200); // 예시 비용
 
+        if (player.GetBasicGold() >= cost)
+        {
+            player.SetBasicGold(cost); // 골드 차감
+            player.AddCritDamageMultiplier(0.5f); // 배율 +0.5
+            Debug.Log($"[강화됨] 치명타 데미지 배율: x{player.GetCritDamageMultiplier()}");
+        }
+        else
+        {
+            Debug.Log("골드가 부족해 치명타 데미지를 강화할 수 없습니다.");
+        }
+    }
 
 
     // 게임 시작 시 저장된 데이터로 Player cs 설정
