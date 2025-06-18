@@ -49,8 +49,9 @@ public class WeaponManager : MonoBehaviour
         InputLvweaponText.text = Weapon.Inputweaponlv.ToString();
         InputPowerweaponText.text = Weapon.Inputweaponpower.ToString();
         InputcritChanceText.text = Weapon.Inputchancecrit.ToString("F1")+ "%";
+
     }
-    
+
     public void Reset() //무기를 해제했을때 
     {
         Weapon.Nameweapon = "빈손";
